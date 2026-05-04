@@ -131,20 +131,6 @@ modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) clo
 
 // ─── Helpers ─────────────────────────────────────
 
-const SECTOR_LABELS = {
-  infraestructuras: 'Infraestructuras',
-  industrial: 'Industrial',
-  edificacion: 'Edificación',
-  instalaciones: 'Instalaciones Técnicas',
-};
-
-const CAT_LABELS = {
-  adjudicacion: 'Adjudicación',
-  'inicio-obra': 'Inicio de Obra',
-  ejecucion: 'Ejecución',
-  entrega: 'Entrega',
-};
-
 const STATUS_LABELS = {
   activo: 'Activo',
   completado: 'Completado',
