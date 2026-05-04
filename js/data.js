@@ -141,11 +141,11 @@ const AlventorData = {
   },
   updateProject(id, data) {
     const list = this.getProjects();
-    const i = list.findIndex(p => p.id === id);
+    const i = list.findIndex(p => String(p.id) === String(id));
     if (i !== -1) { list[i] = { ...list[i], ...data }; this.saveProjects(list); }
   },
   deleteProject(id) {
-    this.saveProjects(this.getProjects().filter(p => p.id !== id));
+    this.saveProjects(this.getProjects().filter(p => String(p.id) !== String(id)));
   },
 
   /* NEWS */
@@ -167,11 +167,11 @@ const AlventorData = {
   },
   updateNewsItem(id, data) {
     const list = this.getNews();
-    const i = list.findIndex(n => n.id === id);
+    const i = list.findIndex(n => String(n.id) === String(id));
     if (i !== -1) { list[i] = { ...list[i], ...data }; this.saveNews(list); }
   },
   deleteNewsItem(id) {
-    this.saveNews(this.getNews().filter(n => n.id !== id));
+    this.saveNews(this.getNews().filter(n => String(n.id) !== String(id)));
   },
   resetToDefaults() {
     localStorage.removeItem(KEYS.projects);

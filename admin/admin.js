@@ -222,6 +222,22 @@ function proyectoFormHTML(p = {}) {
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
+          <label class="block text-[10px] font-bold uppercase tracking-widest text-[#75777e] mb-2">Tipo *</label>
+          <select id="f-type"
+            class="w-full border border-[#c4c6ce] px-4 py-3 text-sm focus:outline-none focus:border-[#0b1f3a] transition-colors appearance-none">
+            ${['EPC', 'Construcción', 'Instalaciones'].map(t =>
+              `<option value="${t}" ${p.type === t ? 'selected' : ''}>${t}</option>`
+            ).join('')}
+          </select>
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-widest text-[#75777e] mb-2">Etiqueta (badge)</label>
+          <input id="f-badge" type="text" value="${esc(p.badge || '')}" placeholder="Modelo EPC"
+            class="w-full border border-[#c4c6ce] px-4 py-3 text-sm focus:outline-none focus:border-[#0b1f3a] transition-colors">
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
           <label class="block text-[10px] font-bold uppercase tracking-widest text-[#75777e] mb-2">Año</label>
           <input id="f-year" type="text" value="${esc(p.year || '')}" placeholder="2024"
             class="w-full border border-[#c4c6ce] px-4 py-3 text-sm focus:outline-none focus:border-[#0b1f3a] transition-colors">
@@ -264,7 +280,7 @@ document.getElementById('add-proyecto-btn').addEventListener('click', () => {
 });
 
 function editProyecto(id) {
-  const p = AlventorData.getProjects().find(x => x.id === id);
+  const p = AlventorData.getProjects().find(x => String(x.id) === String(id));
   if (!p) return;
   openModal('Editar Proyecto', proyectoFormHTML(p), () => {
     const data = readProyectoForm();
@@ -298,6 +314,8 @@ function readProyectoForm() {
 
   const tagsRaw = document.getElementById('f-tags')?.value || '';
   const tags = tagsRaw.split(',').map(t => t.trim()).filter(Boolean);
+  const type  = document.getElementById('f-type')?.value || 'EPC';
+  const badge = document.getElementById('f-badge')?.value.trim() || type;
 
   return {
     title,
@@ -305,6 +323,8 @@ function readProyectoForm() {
     description: desc,
     sector: document.getElementById('f-sector')?.value || 'infraestructuras',
     status: document.getElementById('f-status')?.value || 'activo',
+    type,
+    badge,
     year: document.getElementById('f-year')?.value.trim() || '',
     value: document.getElementById('f-value')?.value.trim() || '',
     image: document.getElementById('f-img')?.value.trim() || '',
@@ -420,7 +440,7 @@ document.getElementById('add-noticia-btn').addEventListener('click', () => {
 });
 
 function editNoticia(id) {
-  const n = AlventorData.getNews().find(x => x.id === id);
+  const n = AlventorData.getNews().find(x => String(x.id) === String(id));
   if (!n) return;
   openModal('Editar Noticia', noticiaFormHTML(n), () => {
     const data = readNoticiaForm();
