@@ -105,7 +105,7 @@ function renderFooter() {
           <a href="${base}index.html" class="text-2xl font-black tracking-tighter text-white uppercase hover:text-[#C49A3C] transition-colors">ALVENTOR</a>
           <p class="text-[11px] leading-relaxed text-slate-400">
             International Engineering &amp; Construction.<br>
-            Especialistas en el modelo EPC para los sectores de energía, infraestructuras e industria pesada.
+            Especialistas en ejeuccion de proyectos integrales y EPC para los sectores de infraestructuras, edificacion, energía e industria.
           </p>
           <a href="${base}contacto.html"
              class="inline-block bg-[#C49A3C] text-[#0b1f3a] px-5 py-2 text-[11px] font-bold uppercase tracking-widest hover:bg-white transition-colors">
