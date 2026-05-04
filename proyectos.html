@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos | Alventor — EPC & Construcción</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+  <style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}</style>
+</head>
+<body class="bg-[#fcf8fb] text-[#1b1b1d] antialiased">
+
+  <div id="nav-root"></div>
+
+  <main class="pt-20">
+
+    <!-- HERO -->
+    <section class="relative bg-[#0b1f3a] text-white py-28 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img class="w-full h-full object-cover opacity-30"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCManmY6lR-reo_QgOnBJWtf9YKGA8Gx1q_TtysaX6AwZQLZt_4PEPwJ4YrahvEIjAXttBnpY7APyaxeqqcF3ygP6KmHz2J7SdG2GwMigXqSv_IpL3e1Pua8p1Y7VpC420sr0iklDv_Sa9rb2l8MQoTC6uc2TLrv9bVe2SkXsD2UMhYHg0UJK_IRAbIu6HOscZ0hSa8emqHnewKvs_mfcRag0Y9qvjUWYmo0h4Necuz9xjA4A2ojA7Cog8M7-NidIU36cFTvgw4LAmM"
+          alt="Portafolio EPC Alventor">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0b1f3a]/70 to-[#0b1f3a]"></div>
+      </div>
+      <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12">
+        <span class="hero-line block text-[11px] font-bold uppercase tracking-[0.4em] text-[#C49A3C] mb-5 border-l-4 border-[#C49A3C] pl-4">
+          Control Técnico · Entrega Garantizada
+        </span>
+        <h1 class="hero-line text-5xl md:text-6xl font-black tracking-tight mb-5 max-w-3xl">Portafolio de Ejecución Real</h1>
+        <p class="hero-line text-lg text-[#7587a7] max-w-xl leading-relaxed">
+          Experiencia en ejecución bajo modelo EPC y construcción especializada. Compromiso absoluto con el control de costes y plazos críticos.
+        </p>
+      </div>
+    </section>
+
+    <!-- FILTER BAR (sticky) -->
+    <section class="border-b border-[#c4c6ce] bg-white sticky top-20 z-40">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12 py-5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3 overflow-x-auto pb-1 md:pb-0 flex-wrap">
+          <button data-filter="all"
+            class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest border bg-[#0b1f3a] text-white border-[#0b1f3a]">
+            Todos los Sectores
+          </button>
+          <button data-filter="infraestructuras"
+            class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Infraestructuras
+          </button>
+          <button data-filter="industrial"
+            class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Industrial
+          </button>
+          <button data-filter="edificacion"
+            class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Edificación
+          </button>
+          <button data-filter="instalaciones"
+            class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Instalaciones Técnicas
+          </button>
+        </div>
+        <span id="project-count" class="text-[10px] font-bold text-[#75777e] uppercase tracking-widest flex-shrink-0"></span>
+      </div>
+    </section>
+
+    <!-- PROJECTS GRID -->
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-20 technical-grid-bg">
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <span class="material-symbols-outlined text-5xl text-slate-300 mb-4 block">search_off</span>
+        <p class="text-slate-400 text-lg font-medium">No hay proyectos en esta categoría.</p>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="bg-[#e4e2e4] py-20 border-t border-[#c4c6ce]">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+        <div class="reveal">
+          <div class="text-6xl md:text-7xl font-black text-[#0b1f3a]" data-counter="150" data-prefix="+">0</div>
+          <div class="text-[10px] font-bold uppercase tracking-widest text-[#44474d] mt-3">Proyectos Entregados</div>
+        </div>
+        <div class="reveal">
+          <div class="text-6xl md:text-7xl font-black text-[#0b1f3a]">24/7</div>
+          <div class="text-[10px] font-bold uppercase tracking-widest text-[#44474d] mt-3">Control de Operaciones</div>
+        </div>
+        <div class="reveal">
+          <div class="text-6xl md:text-7xl font-black text-[#0b1f3a]">ISO</div>
+          <div class="text-[10px] font-bold uppercase tracking-widest text-[#44474d] mt-3">Estándares Globales de Calidad</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-[#0b1f3a] text-white py-16">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8 reveal">
+        <div>
+          <h3 class="text-2xl font-bold mb-2">¿Tiene un proyecto similar?</h3>
+          <p class="text-[#7587a7] text-sm">Cuéntenos su desafío y le asignaremos un ingeniero de referencia en 24h.</p>
+        </div>
+        <a href="contacto.html"
+           class="flex-shrink-0 inline-flex items-center gap-2 bg-[#C49A3C] text-[#000615] px-8 py-4 text-[11px] font-black uppercase tracking-widest hover:bg-white transition-colors duration-200">
+          Iniciar Consultoría <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function renderGrid(sector) {
+      const all = AlventorData.getProjects();
+      const filtered = sector === 'all' ? all : all.filter(p => p.sector === sector);
+      const grid = document.getElementById('projects-grid');
+      const empty = document.getElementById('empty-state');
+      const count = document.getElementById('project-count');
+
+      if (!filtered.length) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+      } else {
+        empty.classList.add('hidden');
+        grid.innerHTML = filtered.map(p => projectCardHTML(p)).join('');
+      }
+      count.textContent = `${filtered.length} proyecto${filtered.length !== 1 ? 's' : ''}`;
+      refreshReveal();
+    }
+
+    // Override filter logic to call renderGrid
+    document.addEventListener('DOMContentLoaded', () => {
+      renderGrid('all');
+      document.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => renderGrid(btn.dataset.filter));
+      });
+    });
+  </script>
+</body>
+</html>

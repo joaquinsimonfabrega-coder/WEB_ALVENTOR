@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alventor — EPC & Construcción Internacional</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+  <style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}</style>
+</head>
+<body class="bg-[#fcf8fb] text-[#1b1b1d] antialiased">
+
+  <div id="nav-root"></div>
+
+  <main class="pt-20">
+
+    <!-- ═══════════════════════════════════════════════════════ HERO -->
+    <section class="relative bg-[#000615] text-white overflow-hidden min-h-[92vh] flex items-center">
+      <div class="absolute inset-0 z-0">
+        <img class="w-full h-full object-cover opacity-35"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_WLaOw6Q0xTZOaWdxkFjPl5TTMeiHUvPhu06ZLXVQzYQ92POhhMVZXNFXze2qkNBaLjJfDX7LuRyo3N3hiVKYTUUIrocpLCeJWSsYkaH7hJcwn9u51HQ8lSy2un8QQ73wU03sTC4CDV3F_gr_N5pA44Jqi4pHa_9vRKc5DQ3EXz49UJsGPZN8hAdqetuoAnxHeFMEjCUHzjH_ri44P5oKlST5TKmRw3XRD_Jm3EaNgtval4HR7pnFGWfNgFEPYixfhrEKRtlBFyNg"
+          alt="Construcción industrial a gran escala">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#000615] via-[#000615]/80 to-transparent"></div>
+      </div>
+
+      <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 py-24">
+        <div class="max-w-3xl">
+          <span class="hero-line block text-[11px] font-bold uppercase tracking-[0.4em] text-[#C49A3C] mb-6 border-l-4 border-[#C49A3C] pl-4">
+            Ingeniería · Procura · Construcción
+          </span>
+          <h1 class="hero-line font-black text-5xl md:text-7xl leading-[1.02] tracking-tight mb-6">
+            Building<br>the Future
+          </h1>
+          <p class="hero-line text-lg text-[#7587a7] max-w-xl leading-relaxed mb-10">
+            Especialistas en la ejecución integral bajo modelo EPC. Asumimos la responsabilidad total del ciclo del proyecto: desde el diseño y la procura hasta la construcción y puesta en marcha de activos críticos.
+          </p>
+          <div class="hero-line flex flex-wrap gap-4">
+            <a href="servicios.html"
+               class="inline-flex items-center gap-2 bg-[#C49A3C] text-[#000615] px-7 py-3.5 text-[11px] font-black uppercase tracking-widest hover:bg-white transition-colors duration-200">
+              Nuestros Servicios
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </a>
+            <a href="proyectos.html"
+               class="inline-flex items-center gap-2 border border-white/30 text-white px-7 py-3.5 text-[11px] font-bold uppercase tracking-widest hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors duration-200">
+              Ver Proyectos
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+        <span class="text-[9px] uppercase tracking-widest text-white">Scroll</span>
+        <div class="w-px h-12 bg-white/50 animate-pulse"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ STATS BAR -->
+    <section class="bg-[#0b1f3a] py-8 border-b-4 border-[#C49A3C]">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-black text-[#C49A3C]" data-counter="150" data-prefix="+" data-suffix="">0</div>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-[#7587a7] mt-1">Proyectos Entregados</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-black text-[#C49A3C]" data-counter="15" data-prefix="+" data-suffix="">0</div>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-[#7587a7] mt-1">Años de Experiencia</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-black text-[#C49A3C]" data-counter="10" data-prefix="+" data-suffix="">0</div>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-[#7587a7] mt-1">Mercados Internacionales</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-black text-[#C49A3C]" data-counter="99" data-suffix="%">0</div>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-[#7587a7] mt-1">Cumplimiento de Plazos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ EPC OVERVIEW -->
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <div class="reveal-left">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-[#30628d]">precision_manufacturing</span>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-[#30628d]">Modelo Turnkey</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold text-[#000615] mb-5 leading-tight">EPC: Gestión Integral de Activos</h2>
+          <p class="text-[#44474d] leading-relaxed mb-8">
+            Lideramos el proyecto desde la ingeniería de detalle hasta la entrega llave en mano. Controlamos estrictamente los costes y plazos, asumiendo la responsabilidad técnica y operativa para garantizar activos listos para la producción.
+          </p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger">
+            <li class="reveal flex items-start gap-3 p-4 bg-[#f6f3f5] border border-[#c4c6ce]">
+              <span class="material-symbols-outlined text-[#30628d] flex-shrink-0">task_alt</span>
+              <span class="text-sm font-medium text-[#0b1f3a]">Diseño e Ingeniería de detalle</span>
+            </li>
+            <li class="reveal flex items-start gap-3 p-4 bg-[#f6f3f5] border border-[#c4c6ce]">
+              <span class="material-symbols-outlined text-[#30628d] flex-shrink-0">inventory</span>
+              <span class="text-sm font-medium text-[#0b1f3a]">Gestión de procura y suministros</span>
+            </li>
+            <li class="reveal flex items-start gap-3 p-4 bg-[#f6f3f5] border border-[#c4c6ce]">
+              <span class="material-symbols-outlined text-[#30628d] flex-shrink-0">construction</span>
+              <span class="text-sm font-medium text-[#0b1f3a]">Ejecución y construcción directa</span>
+            </li>
+            <li class="reveal flex items-start gap-3 p-4 bg-[#f6f3f5] border border-[#c4c6ce]">
+              <span class="material-symbols-outlined text-[#30628d] flex-shrink-0">verified</span>
+              <span class="text-sm font-medium text-[#0b1f3a]">Puesta en marcha y validación</span>
+            </li>
+          </ul>
+          <a href="servicios.html"
+             class="inline-flex items-center gap-2 mt-8 text-[11px] font-bold uppercase tracking-widest text-[#0b1f3a] hover:text-[#C49A3C] transition-colors">
+            Ver todos los servicios <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+
+        <div class="reveal-right rounded-none overflow-hidden border border-[#c4c6ce] h-[480px]">
+          <img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRVpa3o0LcVOM_3k8MqkulcTnlPL5i0IPjm7iugU7Q4rx1LsEZlKvkP15Yx6e8y4C8zpZMS_E3iAmCe3E__1toGMouYY5fjaKsbuQbuBvCKo41w5wvlVUNZuWlAL4YHqqcthGmnDCROSc7bpkUBDmSailitBv4Lq3GLhbxfxkYl3I0P0OTXOU0L4B_lQ5JmSlPcls-b8kMB9REVj7IgVPt5Qil0lm_eoM9qInGEpQiL5J7TK63clhTK0FLSSL2vnusOQXPkF6SkAib"
+            alt="Sala de control técnico EPC">
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ SERVICES GRID -->
+    <section class="bg-[#f0edef] py-20">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div class="mb-12 reveal">
+          <span class="gold-bar mb-4"></span>
+          <h2 class="text-3xl font-bold text-[#000615]">Capacidades Operativas</h2>
+          <p class="text-[#44474d] mt-2">Ejecución real en entornos de alta complejidad.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
+          <div class="reveal p-8 bg-white border border-[#c4c6ce] hover:border-[#C49A3C] hover:shadow-lg transition-all duration-300 card-lift">
+            <span class="material-symbols-outlined text-[#30628d] text-4xl mb-4 block">foundation</span>
+            <h3 class="text-xl font-semibold text-[#000615] mb-3">Construcción e Infraestructura</h3>
+            <p class="text-sm text-[#44474d] leading-relaxed">Obra civil pesada, estructuras industriales y cimentaciones especiales orientadas a la durabilidad.</p>
+          </div>
+          <div class="reveal p-8 bg-white border border-[#c4c6ce] hover:border-[#C49A3C] hover:shadow-lg transition-all duration-300 card-lift">
+            <span class="material-symbols-outlined text-[#30628d] text-4xl mb-4 block">settings_input_component</span>
+            <h3 class="text-xl font-semibold text-[#000615] mb-3">Instalaciones MEP</h3>
+            <p class="text-sm text-[#44474d] leading-relaxed">Sistemas eléctricos, mecánicos y de control industrial. Edificios convertidos en máquinas eficientes.</p>
+          </div>
+          <div class="reveal p-8 bg-[#0b1f3a] border border-[#0b1f3a] hover:shadow-lg transition-all duration-300 card-lift">
+            <div class="text-[10px] font-bold text-[#C49A3C] uppercase tracking-widest mb-4 border border-[#C49A3C]/30 inline-block px-2 py-1">HOSPITALITY</div>
+            <h3 class="text-xl font-semibold text-white mb-3">Edificación y Rehabilitación</h3>
+            <p class="text-sm text-[#7587a7] leading-relaxed">Expertos en hoteles en operación. Control de ruido, plazos críticos y acabados de alto standing.</p>
+          </div>
+          <div class="reveal p-8 bg-white border border-[#c4c6ce] hover:border-[#C49A3C] hover:shadow-lg transition-all duration-300 card-lift">
+            <span class="material-symbols-outlined text-[#30628d] text-4xl mb-4 block">architecture</span>
+            <h3 class="text-xl font-semibold text-[#000615] mb-3">Ingeniería Aplicada</h3>
+            <p class="text-sm text-[#44474d] leading-relaxed">Ingeniería orientada al éxito de la ejecución. Diseños teóricos convertidos en soluciones constructivas reales.</p>
+          </div>
+          <div class="reveal p-8 bg-white border border-[#c4c6ce] hover:border-[#C49A3C] hover:shadow-lg transition-all duration-300 card-lift">
+            <span class="material-symbols-outlined text-[#30628d] text-4xl mb-4 block">monitoring</span>
+            <h3 class="text-xl font-semibold text-[#000615] mb-3">Project Management</h3>
+            <p class="text-sm text-[#44474d] leading-relaxed">Control de alcance, coste y cronograma con rigor militar para entregar según lo pactado.</p>
+          </div>
+          <div class="reveal p-8 bg-white border border-[#c4c6ce] hover:border-[#C49A3C] hover:shadow-lg transition-all duration-300 card-lift">
+            <span class="material-symbols-outlined text-[#30628d] text-4xl mb-4 block">local_shipping</span>
+            <h3 class="text-xl font-semibold text-[#000615] mb-3">Suministro Crítico</h3>
+            <p class="text-sm text-[#44474d] leading-relaxed">Logística integrada para que cada componente esté en el lugar preciso en el momento adecuado.</p>
+          </div>
+        </div>
+        <div class="mt-10 text-center reveal">
+          <a href="servicios.html"
+             class="inline-flex items-center gap-2 border border-[#0b1f3a] text-[#0b1f3a] px-8 py-3 text-[11px] font-bold uppercase tracking-widest hover:bg-[#0b1f3a] hover:text-white transition-colors duration-200">
+            Explorar todos los servicios <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ FEATURED PROJECTS -->
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-24 technical-grid-bg">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 reveal">
+        <div>
+          <span class="gold-bar mb-4"></span>
+          <h2 class="text-3xl font-bold text-[#000615]">Proyectos Destacados</h2>
+          <p class="text-[#44474d] mt-1 text-sm">Casos reales de ejecución bajo modelo EPC.</p>
+        </div>
+        <a href="proyectos.html"
+           class="text-[11px] font-bold uppercase tracking-widest text-[#0b1f3a] hover:text-[#C49A3C] transition-colors flex items-center gap-2 flex-shrink-0">
+          Ver portafolio completo <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+      <div id="featured-projects" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ EPC COMMITMENT (dark) -->
+    <section class="bg-[#0b1f3a] text-white py-24">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16 reveal">
+          <div class="max-w-xl">
+            <span class="text-[11px] font-bold text-[#30628d] uppercase tracking-widest mb-2 block">El Compromiso Alventor</span>
+            <h2 class="text-3xl md:text-4xl font-bold">Responsabilidad Total EPC</h2>
+          </div>
+          <div class="text-[11px] font-bold text-[#7587a7] text-right uppercase tracking-widest">
+            Control Integral<br>Diseño | Procura | Construcción
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 stagger">
+          <div class="reveal space-y-4">
+            <div class="text-5xl font-black text-[#30628d]/30">01</div>
+            <h4 class="text-xl font-semibold text-white">Único Interlocutor</h4>
+            <p class="text-sm text-[#7587a7] leading-relaxed">Simplificamos la comunicación y eliminamos la fragmentación de responsabilidades. Alventor responde por el 100% del proyecto.</p>
+          </div>
+          <div class="reveal space-y-4">
+            <div class="text-5xl font-black text-[#30628d]/30">02</div>
+            <h4 class="text-xl font-semibold text-white">Construcción Real</h4>
+            <p class="text-sm text-[#7587a7] leading-relaxed">No somos consultores, somos constructores. Nuestra capacidad de ejecución física garantiza que lo proyectado se convierta en realidad.</p>
+          </div>
+          <div class="reveal space-y-4">
+            <div class="text-5xl font-black text-[#30628d]/30">03</div>
+            <h4 class="text-xl font-semibold text-white">Garantía de Entrega</h4>
+            <p class="text-sm text-[#7587a7] leading-relaxed">Nuestra metodología EPC nos permite asegurar por contrato los plazos de entrega y el precio final del activo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ LATEST NEWS -->
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-24">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 reveal">
+        <div>
+          <span class="gold-bar mb-4"></span>
+          <h2 class="text-3xl font-bold text-[#000615]">Última Actualidad</h2>
+          <p class="text-[#44474d] mt-1 text-sm">Seguimiento técnico de nuestra actividad global.</p>
+        </div>
+        <a href="actualidad.html"
+           class="text-[11px] font-bold uppercase tracking-widest text-[#0b1f3a] hover:text-[#C49A3C] transition-colors flex items-center gap-2 flex-shrink-0">
+          Todas las noticias <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+      <div id="latest-news" class="grid grid-cols-1 md:grid-cols-12 gap-8"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ CTA -->
+    <section class="bg-[#fcf8fb] border-t border-[#c4c6ce] py-20">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12 text-center reveal">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#000615] mb-5 max-w-2xl mx-auto">
+          ¿Tiene un proyecto complejo? Lo ejecutamos contigo.
+        </h2>
+        <p class="text-[#44474d] mb-10 max-w-xl mx-auto leading-relaxed">
+          Nuestro protocolo de consultoría técnica está diseñado para proyectos EPC de gran escala y contratos de alta exigencia.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="contacto.html"
+             class="inline-flex items-center gap-2 bg-[#0b1f3a] text-white px-8 py-4 text-[11px] font-black uppercase tracking-widest hover:bg-[#C49A3C] hover:text-[#000615] transition-colors duration-200">
+            Solicitar Consultoría
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+          <a href="proyectos.html"
+             class="inline-flex items-center gap-2 border border-[#0b1f3a] text-[#0b1f3a] px-8 py-4 text-[11px] font-bold uppercase tracking-widest hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors duration-200">
+            Ver Casos de Éxito
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Render featured projects
+    const featuredProj = AlventorData.getProjects().filter(p => p.featured).slice(0, 3);
+    document.getElementById('featured-projects').innerHTML =
+      featuredProj.map(p => projectCardHTML(p)).join('');
+
+    // Render latest news (featured + 2 others)
+    const allNews = AlventorData.getNews();
+    const featuredNews = allNews.find(n => n.featured) || allNews[0];
+    const sideNews = allNews.filter(n => n.id !== featuredNews.id).slice(0, 3);
+
+    document.getElementById('latest-news').innerHTML = `
+      <div class="md:col-span-7">${newsCardHTML(featuredNews, true)}</div>
+      <div class="md:col-span-5 flex flex-col gap-6 justify-start">
+        ${sideNews.map(n => newsCardHTML(n, false)).join('')}
+      </div>`;
+
+    refreshReveal();
+  </script>
+</body>
+</html>

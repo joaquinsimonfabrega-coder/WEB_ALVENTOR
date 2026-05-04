@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualidad | Alventor — EPC & Construcción</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+  <style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}</style>
+</head>
+<body class="bg-[#fcf8fb] text-[#1b1b1d] antialiased">
+
+  <div id="nav-root"></div>
+
+  <main class="pt-20">
+
+    <!-- HERO -->
+    <section class="relative h-[560px] flex items-center overflow-hidden">
+      <div class="absolute inset-0">
+        <img class="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw44IewYjBE6PbnKoK0D5S2wdxwMQPu31_tugycQmaDEPNaURXzK5rHztZn52dNr_3oNpJHG6U6WP8pT8Gf8deccupzH2rixpp5ktm9F_Wg9IBYh-SHVg8Ngcm3cUA3lL8Yick7Caif94SB7bvo-t7guosO7vuq8xDnblOesMnm8xgxIHHAic-SKv_ZAt7Jux-234oBH0IXeuWFC_XQQHr0KmN1lt7F_2douzjU6E4GA7xwQxlxPjFCpnRurKcar8vFlRJ7_JTW6id"
+          alt="Bitácora de operaciones Alventor">
+        <div class="absolute inset-0 bg-[#000615]/65"></div>
+      </div>
+      <div class="relative z-10 max-w-[1440px] px-6 md:px-12 w-full mx-auto">
+        <div class="max-w-3xl">
+          <span class="hero-line block text-[11px] font-bold uppercase tracking-[0.4em] text-[#C49A3C] mb-5">Bitácora de Operaciones</span>
+          <h1 class="hero-line text-5xl md:text-6xl font-black text-white tracking-tight mb-5">Actualidad de Proyectos</h1>
+          <p class="hero-line text-lg text-white/80 max-w-xl leading-relaxed">
+            Seguimiento técnico de nuestra actividad global: adjudicaciones, inicios de obra y entregas llave en mano.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER PILLS -->
+    <section class="border-b border-[#c4c6ce] bg-white sticky top-20 z-40">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12 py-5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3 flex-wrap">
+          <button data-news-filter="all"
+            class="news-filter px-5 py-2 text-[10px] font-bold uppercase tracking-widest border bg-[#0b1f3a] text-white border-[#0b1f3a]">
+            Todos
+          </button>
+          <button data-news-filter="adjudicacion"
+            class="news-filter px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Adjudicación
+          </button>
+          <button data-news-filter="inicio-obra"
+            class="news-filter px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Inicio de Obra
+          </button>
+          <button data-news-filter="ejecucion"
+            class="news-filter px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Ejecución
+          </button>
+          <button data-news-filter="entrega"
+            class="news-filter px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-slate-600 hover:border-[#C49A3C] hover:text-[#C49A3C] transition-colors">
+            Entrega
+          </button>
+        </div>
+        <span id="news-count" class="text-[10px] font-bold text-[#75777e] uppercase tracking-widest flex-shrink-0"></span>
+      </div>
+    </section>
+
+    <!-- NEWS FEED -->
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-20">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+        <div>
+          <span class="gold-bar mb-4"></span>
+          <h2 class="text-3xl font-bold text-[#000615]">Alventor al día</h2>
+          <p class="text-[#44474d] mt-1 text-sm">Últimas noticias y actividades operativas.</p>
+        </div>
+      </div>
+      <div id="news-feed" class="grid grid-cols-1 md:grid-cols-12 gap-8"></div>
+    </section>
+
+    <!-- ACTIVITY MONITOR -->
+    <section class="bg-[#f6f3f5] py-20 border-y border-[#c4c6ce]">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div class="mb-10 reveal">
+          <span class="text-[11px] font-bold uppercase tracking-widest text-[#30628d] mb-2 block">Estado Operativo</span>
+          <h2 class="text-3xl font-bold text-[#000615]">Monitor de Actividad Operativa</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 stagger">
+          <div class="reveal bg-white p-8 border border-[#c4c6ce] hover:border-[#C49A3C] transition-colors duration-300">
+            <div class="flex justify-between items-start mb-4">
+              <span class="material-symbols-outlined text-[#0b1f3a] text-3xl">pending_actions</span>
+              <span class="text-[9px] font-black text-[#C49A3C] bg-[#0b1f3a] px-2 py-1">LIVE</span>
+            </div>
+            <p class="text-4xl font-black text-[#000615]">12</p>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-[#44474d] mt-1">Obras Iniciadas este mes</p>
+          </div>
+          <div class="reveal bg-white p-8 border border-[#c4c6ce] hover:border-[#C49A3C] transition-colors duration-300">
+            <div class="mb-4">
+              <span class="material-symbols-outlined text-[#0b1f3a] text-3xl">precision_manufacturing</span>
+            </div>
+            <p class="text-4xl font-black text-[#000615]">85%</p>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-[#44474d] mt-1">Media de ejecución global</p>
+          </div>
+          <div class="reveal bg-white p-8 border border-[#c4c6ce] hover:border-[#C49A3C] transition-colors duration-300">
+            <div class="mb-4">
+              <span class="material-symbols-outlined text-[#0b1f3a] text-3xl">verified</span>
+            </div>
+            <p class="text-4xl font-black text-[#000615]">05</p>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-[#44474d] mt-1">Entregas en revisión final</p>
+          </div>
+          <div class="reveal bg-white p-8 border border-[#c4c6ce] hover:border-[#C49A3C] transition-colors duration-300">
+            <div class="mb-4">
+              <span class="material-symbols-outlined text-[#0b1f3a] text-3xl">contract</span>
+            </div>
+            <p class="text-4xl font-black text-[#000615]">03</p>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-[#44474d] mt-1">Nuevas adjudicaciones Q4</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE CTA -->
+    <section class="bg-[#0b1f3a] text-white py-20">
+      <div class="max-w-3xl mx-auto px-6 md:px-12 text-center reveal">
+        <h2 class="text-2xl md:text-3xl font-bold mb-5 uppercase tracking-tight">Reciba nuestras actualizaciones técnicas</h2>
+        <p class="text-[#7587a7] mb-10 leading-relaxed">Suscríbase para recibir informes trimestrales sobre el avance de nuestros proyectos globales.</p>
+        <form id="subscribe-form" class="flex flex-col sm:flex-row gap-4 justify-center">
+          <input type="email" required placeholder="Su correo profesional"
+            class="bg-white/10 border border-white/20 px-6 py-4 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#C49A3C] w-full sm:w-80">
+          <button type="submit"
+            class="bg-[#C49A3C] text-[#000615] px-8 py-4 text-[11px] font-black uppercase tracking-widest hover:bg-white transition-colors duration-200 flex-shrink-0">
+            Suscribirse
+          </button>
+        </form>
+        <p id="subscribe-success" class="hidden mt-5 text-[#C49A3C] font-bold text-sm">✓ Suscripción confirmada. Recibirá nuestro próximo informe trimestral.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    let currentFilter = 'all';
+
+    function renderNews(filter) {
+      const all = AlventorData.getNews();
+      const filtered = filter === 'all' ? all : all.filter(n => n.category === filter);
+      const feed = document.getElementById('news-feed');
+      const count = document.getElementById('news-count');
+      count.textContent = `${filtered.length} noticia${filtered.length !== 1 ? 's' : ''}`;
+
+      if (!filtered.length) {
+        feed.innerHTML = `<div class="md:col-span-12 text-center py-16 text-slate-400">No hay noticias en esta categoría.</div>`;
+        return;
+      }
+
+      const featured = filtered[0];
+      const rest = filtered.slice(1, 4);
+      feed.innerHTML = `
+        <div class="md:col-span-7">${newsCardHTML(featured, true)}</div>
+        <div class="md:col-span-5 flex flex-col gap-6">
+          ${rest.map(n => newsCardHTML(n, false)).join('')}
+        </div>`;
+      refreshReveal();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNews('all');
+
+      document.querySelectorAll('.news-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentFilter = btn.dataset.newsFilter;
+          document.querySelectorAll('.news-filter').forEach(b => {
+            b.classList.remove('bg-[#0b1f3a]', 'text-white', 'border-[#0b1f3a]');
+            b.classList.add('border-[#c4c6ce]', 'text-slate-600');
+          });
+          btn.classList.add('bg-[#0b1f3a]', 'text-white', 'border-[#0b1f3a]');
+          btn.classList.remove('border-[#c4c6ce]', 'text-slate-600');
+          renderNews(currentFilter);
+        });
+      });
+
+      // Subscribe form
+      const subForm = document.getElementById('subscribe-form');
+      if (subForm) {
+        subForm.addEventListener('submit', e => {
+          e.preventDefault();
+          subForm.style.display = 'none';
+          document.getElementById('subscribe-success').classList.remove('hidden');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Uso — Web Alventor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f6f3f5; color: #1b1b1d; line-height: 1.7; }
+
+    /* Layout */
+    .wrapper { display: flex; min-height: 100vh; }
+    #sidebar { width: 260px; flex-shrink: 0; background: #0b1f3a; color: #fff; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 32px 0; }
+    #content { flex: 1; padding: 60px 72px; max-width: 860px; }
+
+    /* Sidebar */
+    .sidebar-logo { padding: 0 24px 32px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 24px; }
+    .sidebar-logo .box { width: 24px; height: 24px; background: #C49A3C; display: inline-block; margin-right: 8px; vertical-align: middle; }
+    .sidebar-logo span { font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .sidebar-section { padding: 4px 24px; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #C49A3C; margin: 20px 0 6px; }
+    .sidebar-link { display: block; padding: 7px 24px; font-size: 12px; color: #7587a7; text-decoration: none; transition: color 0.2s, background 0.2s; }
+    .sidebar-link:hover { color: #fff; background: rgba(255,255,255,0.07); }
+    .sidebar-link.active { color: #C49A3C; border-left: 2px solid #C49A3C; padding-left: 22px; }
+
+    /* Content */
+    h1 { font-size: 32px; font-weight: 900; color: #0b1f3a; margin-bottom: 8px; }
+    .lead { font-size: 15px; color: #44474d; margin-bottom: 48px; }
+    h2 { font-size: 22px; font-weight: 800; color: #0b1f3a; margin: 56px 0 16px; padding-top: 56px; border-top: 2px solid #e4e2e4; }
+    h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    h3 { font-size: 15px; font-weight: 700; color: #0b1f3a; margin: 28px 0 10px; }
+    p { font-size: 14px; color: #44474d; margin-bottom: 12px; }
+    ul, ol { padding-left: 20px; margin-bottom: 14px; }
+    li { font-size: 14px; color: #44474d; margin-bottom: 5px; }
+    strong { color: #0b1f3a; font-weight: 700; }
+
+    /* Callout boxes */
+    .tip { background: #cfe5ff; border-left: 4px solid #30628d; padding: 14px 18px; margin: 20px 0; border-radius: 0 4px 4px 0; }
+    .tip p { margin: 0; color: #245882; font-size: 13px; }
+    .tip strong { color: #104a74; }
+    .warn { background: #fef3c7; border-left: 4px solid #d97706; padding: 14px 18px; margin: 20px 0; border-radius: 0 4px 4px 0; }
+    .warn p { margin: 0; color: #92400e; font-size: 13px; }
+
+    /* Code */
+    code { background: #1b1b1d; color: #C49A3C; font-family: 'Courier New', monospace; font-size: 12px; padding: 2px 7px; border-radius: 3px; }
+    pre { background: #0b1f3a; color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 12px; padding: 20px 24px; border-radius: 4px; overflow-x: auto; margin: 16px 0; line-height: 1.6; }
+    pre .c { color: #7587a7; }
+    pre .k { color: #C49A3C; }
+    pre .s { color: #86efac; }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+    th { background: #0b1f3a; color: #fff; text-align: left; padding: 10px 14px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    td { padding: 10px 14px; border-bottom: 1px solid #e4e2e4; color: #44474d; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #faf8f9; }
+
+    /* Steps */
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 16px 0; }
+    .steps li { counter-increment: step; display: flex; gap: 16px; margin-bottom: 16px; }
+    .steps li::before { content: counter(step); flex-shrink: 0; width: 28px; height: 28px; background: #0b1f3a; color: #C49A3C; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; margin-top: 2px; }
+    .steps li p { margin: 0; }
+
+    /* File badge */
+    .file { display: inline-block; background: #f0edef; border: 1px solid #c4c6ce; color: #0b1f3a; font-size: 11px; font-weight: 700; font-family: 'Courier New', monospace; padding: 2px 8px; border-radius: 3px; }
+
+    /* Tag badge */
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-gold { background: #fef3c7; color: #92400e; }
+    .badge-green { background: #dcfce7; color: #166534; }
+
+    /* Section anchor */
+    section { scroll-margin-top: 24px; }
+
+    /* Print */
+    @media print {
+      #sidebar { display: none; }
+      #content { max-width: 100%; padding: 40px; }
+      h2 { page-break-before: always; }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      #sidebar { display: none; }
+      #content { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <span class="box"></span><span>Alventor</span>
+    <div style="font-size:10px; color:#7587a7; margin-top:6px; font-weight:600; letter-spacing:0.08em;">MANUAL DE USO</div>
+  </div>
+
+  <div class="sidebar-section">Contenido</div>
+  <a class="sidebar-link" href="#admin">1. Panel Admin</a>
+  <a class="sidebar-link" href="#proyectos-admin">— Gestionar proyectos</a>
+  <a class="sidebar-link" href="#noticias-admin">— Gestionar noticias</a>
+
+  <div class="sidebar-section">Edición manual</div>
+  <a class="sidebar-link" href="#textos">2. Cambiar textos</a>
+  <a class="sidebar-link" href="#fotos">3. Cambiar fotografías</a>
+  <a class="sidebar-link" href="#empleos">4. Ofertas de empleo</a>
+  <a class="sidebar-link" href="#colores">5. Colores y estilo</a>
+  <a class="sidebar-link" href="#nav-footer">6. Nav y footer</a>
+
+  <div class="sidebar-section">Referencia</div>
+  <a class="sidebar-link" href="#mapa-archivos">7. Mapa de archivos</a>
+  <a class="sidebar-link" href="#colores-ref">8. Colores de referencia</a>
+  <a class="sidebar-link" href="#faq">9. Preguntas frecuentes</a>
+</nav>
+
+<!-- CONTENT -->
+<main id="content">
+
+  <h1>Manual de Uso — Web Alventor</h1>
+  <p class="lead">Guía completa para actualizar y mantener la web sin necesidad de conocimientos técnicos avanzados.</p>
+
+  <!-- ==================== 1. PANEL ADMIN ==================== -->
+  <section id="admin">
+    <h2>1. Panel de Administración</h2>
+    <p>El panel admin te permite añadir, editar y eliminar proyectos y noticias directamente desde el navegador, sin tocar ningún archivo de código.</p>
+
+    <h3>Cómo acceder</h3>
+    <ol class="steps">
+      <li><p>Abre la web con Live Server en VS Code (clic derecho sobre <span class="file">index.html</span> → <strong>Open with Live Server</strong>).</p></li>
+      <li><p>Ve a la URL: <code>http://127.0.0.1:5500/admin/</code> — o haz clic en el enlace <strong>"Panel Admin"</strong> que aparece en el pie de página de cualquier página.</p></li>
+      <li><p>Introduce la contraseña: <code>alventor2024</code></p></li>
+    </ol>
+
+    <div class="warn"><p><strong>Importante:</strong> Los datos se guardan en el navegador (<em>localStorage</em>). Si borras el historial o cambias de navegador, los datos volverán a los valores por defecto. Para un uso en producción real, consulta la sección de preguntas frecuentes.</p></div>
+  </section>
+
+  <!-- Proyectos admin -->
+  <section id="proyectos-admin">
+    <h3>Gestionar Proyectos</h3>
+    <p>En la barra lateral del panel, haz clic en <strong>Proyectos</strong>. Verás la lista de todos los proyectos actuales.</p>
+
+    <table>
+      <tr><th>Acción</th><th>Cómo hacerlo</th></tr>
+      <tr><td><strong>Añadir</strong></td><td>Botón <strong>"Nuevo Proyecto"</strong> (arriba a la derecha). Rellena el formulario y pulsa Guardar.</td></tr>
+      <tr><td><strong>Editar</strong></td><td>Haz clic en <strong>Editar</strong> en la fila del proyecto. Modifica los campos y pulsa Guardar.</td></tr>
+      <tr><td><strong>Eliminar</strong></td><td>Haz clic en <strong>Borrar</strong> en la fila del proyecto. Confirma en el diálogo que aparece.</td></tr>
+    </table>
+
+    <h3>Campos del formulario de proyecto</h3>
+    <table>
+      <tr><th>Campo</th><th>Descripción</th><th>Ejemplo</th></tr>
+      <tr><td><strong>Título</strong></td><td>Nombre del proyecto</td><td>Terminal Logística Norte</td></tr>
+      <tr><td><strong>Ubicación</strong></td><td>Ciudad y país</td><td>Valencia, España</td></tr>
+      <tr><td><strong>Sector</strong></td><td>Categoría del filtro en la web</td><td>Infraestructuras / Industrial / Edificación / Instalaciones Técnicas</td></tr>
+      <tr><td><strong>Estado</strong></td><td>Fase actual del proyecto</td><td>Activo / Completado / Pendiente</td></tr>
+      <tr><td><strong>Año</strong></td><td>Año de ejecución o entrega</td><td>2024</td></tr>
+      <tr><td><strong>Importe</strong></td><td>Valor del contrato</td><td>€ 12.5M</td></tr>
+      <tr><td><strong>Descripción</strong></td><td>Texto que aparece en la tarjeta del proyecto</td><td>Construcción de terminal de 40.000 m²...</td></tr>
+      <tr><td><strong>URL de Imagen</strong></td><td>Enlace directo a la foto del proyecto</td><td>https://... o img/proyecto.jpg</td></tr>
+      <tr><td><strong>Tags</strong></td><td>Etiquetas separadas por coma</td><td>EPC, Hormigón, Industrial</td></tr>
+    </table>
+  </section>
+
+  <!-- Noticias admin -->
+  <section id="noticias-admin">
+    <h3>Gestionar Noticias</h3>
+    <p>En la barra lateral del panel, haz clic en <strong>Noticias</strong>.</p>
+
+    <table>
+      <tr><th>Acción</th><th>Cómo hacerlo</th></tr>
+      <tr><td><strong>Añadir</strong></td><td>Botón <strong>"Nueva Noticia"</strong>. Rellena el formulario y pulsa Guardar.</td></tr>
+      <tr><td><strong>Editar</strong></td><td>Haz clic en <strong>Editar</strong> en la fila de la noticia.</td></tr>
+      <tr><td><strong>Eliminar</strong></td><td>Haz clic en <strong>Borrar</strong> y confirma.</td></tr>
+    </table>
+
+    <h3>Campos del formulario de noticia</h3>
+    <table>
+      <tr><th>Campo</th><th>Descripción</th><th>Ejemplo</th></tr>
+      <tr><td><strong>Título</strong></td><td>Titular de la noticia</td><td>Adjudicado contrato EPC en Jordania</td></tr>
+      <tr><td><strong>Categoría</strong></td><td>Tipo de noticia (afecta al filtro)</td><td>Adjudicación / Inicio de Obra / Ejecución / Entrega</td></tr>
+      <tr><td><strong>Fecha</strong></td><td>Fecha de publicación</td><td>2024-11-15</td></tr>
+      <tr><td><strong>Extracto</strong></td><td>Resumen breve (aparece en la tarjeta)</td><td>Alventor ha sido seleccionada para...</td></tr>
+      <tr><td><strong>Cuerpo</strong></td><td>Texto completo de la noticia</td><td>Texto largo con todos los detalles</td></tr>
+      <tr><td><strong>URL de Imagen</strong></td><td>Foto de portada de la noticia</td><td>https://... o img/noticia.jpg</td></tr>
+      <tr><td><strong>Proyecto relacionado</strong></td><td>Nombre del proyecto vinculado</td><td>Terminal Logística Norte</td></tr>
+    </table>
+  </section>
+
+  <!-- ==================== 2. TEXTOS ==================== -->
+  <section id="textos">
+    <h2>2. Cambiar Textos de las Páginas</h2>
+    <p>Los textos que <strong>no</strong> son proyectos ni noticias (títulos de secciones, descripciones, datos de contacto, etc.) están directamente en los archivos <span class="file">.html</span>. Ábrelos en VS Code y edítalos.</p>
+
+    <h3>¿Qué archivo editar?</h3>
+    <table>
+      <tr><th>Página</th><th>Archivo</th></tr>
+      <tr><td>Inicio</td><td><span class="file">index.html</span></td></tr>
+      <tr><td>Servicios</td><td><span class="file">servicios.html</span></td></tr>
+      <tr><td>Proyectos</td><td><span class="file">proyectos.html</span></td></tr>
+      <tr><td>Quiénes Somos</td><td><span class="file">quienes-somos.html</span></td></tr>
+      <tr><td>Actualidad</td><td><span class="file">actualidad.html</span></td></tr>
+      <tr><td>Contacto</td><td><span class="file">contacto.html</span></td></tr>
+      <tr><td>Carrera</td><td><span class="file">carrera.html</span></td></tr>
+      <tr><td>Menú de navegación y footer</td><td><span class="file">js/components.js</span></td></tr>
+    </table>
+
+    <h3>Cómo encontrar el texto rápidamente</h3>
+    <ol class="steps">
+      <li><p>Abre el archivo en VS Code.</p></li>
+      <li><p>Pulsa <code>Ctrl + F</code> para abrir el buscador.</p></li>
+      <li><p>Escribe una parte del texto que quieres cambiar (ej: <em>"Sede Central"</em>).</p></li>
+      <li><p>VS Code lo resaltará. Haz clic y edita directamente.</p></li>
+    </ol>
+
+    <div class="tip"><p><strong>Tip:</strong> El título de cada sección empieza siempre con un comentario en mayúsculas como <code>&lt;!-- HERO --&gt;</code> o <code>&lt;!-- CONTACTO PRINCIPAL --&gt;</code>. Usa el buscador para saltar entre secciones.</p></div>
+
+    <h3>Datos de contacto (dirección, teléfono, email, horario)</h3>
+    <p>Están en <span class="file">contacto.html</span>, dentro de la sección <code>&lt;!-- CONTACTO PRINCIPAL --&gt;</code>. Busca el texto actual y sustitúyelo.</p>
+
+    <h3>Textos de la navegación y el footer</h3>
+    <p>Abre <span class="file">js/components.js</span>. Al inicio del archivo verás:</p>
+    <pre><span class="c">// Links de navegación</span>
+<span class="k">const</span> NAV_LINKS = [
+  { href: <span class="s">'quienes-somos.html'</span>, label: <span class="s">'Quiénes Somos'</span> },
+  { href: <span class="s">'servicios.html'</span>,    label: <span class="s">'Servicios'</span> },
+  ...
+]</pre>
+    <p>Cambia el valor de <code>label</code> para renombrar un elemento del menú.</p>
+    <p>Para cambiar el texto del footer (dirección, email, copyright, etc.), busca dentro de la función <code>renderFooter()</code> en ese mismo archivo.</p>
+  </section>
+
+  <!-- ==================== 3. FOTOGRAFÍAS ==================== -->
+  <section id="fotos">
+    <h2>3. Cambiar Fotografías</h2>
+
+    <h3>Opción A — Usar fotos propias (recomendado)</h3>
+    <ol class="steps">
+      <li><p>Crea una carpeta llamada <code>img</code> dentro de la carpeta <span class="file">WEB ALVENTOR</span>.</p></li>
+      <li><p>Copia tus fotos a esa carpeta. Usa nombres sin espacios ni tildes: <code>obra-murcia.jpg</code>, <code>hero-home.jpg</code>.</p></li>
+      <li><p>En el archivo HTML donde quieres cambiar la foto, localiza el tag <code>&lt;img&gt;</code> y cambia el atributo <code>src</code>:</p></li>
+    </ol>
+    <pre><span class="c">&lt;!-- Antes --&gt;</span>
+&lt;img src=<span class="s">"https://lh3.googleusercontent.com/..."</span> alt=<span class="s">"..."</span>&gt;
+
+<span class="c">&lt;!-- Después --&gt;</span>
+&lt;img src=<span class="s">"img/mi-foto.jpg"</span> alt=<span class="s">"Descripción de la foto"</span>&gt;</pre>
+
+    <h3>Opción B — Usar enlace externo</h3>
+    <p>Si la foto está alojada en otra web (Google Drive, Cloudinary, Imgur, etc.), copia el enlace directo a la imagen y pégalo como valor del <code>src</code>.</p>
+    <div class="warn"><p><strong>Atención:</strong> No uses el enlace normal de Google Drive. Necesitas el enlace <em>directo</em> al archivo. En Google Drive: clic derecho sobre la imagen → <strong>Obtener enlace</strong> → cambia la URL a formato directo.</p></div>
+
+    <h3>Dónde está cada fotografía</h3>
+    <table>
+      <tr><th>Imagen</th><th>Archivo</th><th>Cómo encontrarla</th></tr>
+      <tr><td>Hero de inicio</td><td><span class="file">index.html</span></td><td>Busca <code>&lt;!-- HERO --&gt;</code></td></tr>
+      <tr><td>Hero de servicios</td><td><span class="file">servicios.html</span></td><td>Busca <code>&lt;!-- HERO --&gt;</code></td></tr>
+      <tr><td>Hero de proyectos</td><td><span class="file">proyectos.html</span></td><td>Busca <code>&lt;!-- HERO --&gt;</code></td></tr>
+      <tr><td>Hero de quiénes somos</td><td><span class="file">quienes-somos.html</span></td><td>Busca <code>&lt;!-- HERO --&gt;</code></td></tr>
+      <tr><td>Hero de actualidad</td><td><span class="file">actualidad.html</span></td><td>Busca <code>&lt;!-- HERO --&gt;</code></td></tr>
+      <tr><td>Hero de contacto</td><td><span class="file">contacto.html</span></td><td>Busca <code>&lt;!-- HERO --&gt;</code></td></tr>
+      <tr><td>Hero de carrera</td><td><span class="file">carrera.html</span></td><td>Busca <code>&lt;!-- HERO --&gt;</code></td></tr>
+      <tr><td>Mapa decorativo (contacto)</td><td><span class="file">contacto.html</span></td><td>Busca <code>Murcia, España</code></td></tr>
+      <tr><td>Fotos de proyectos</td><td>Panel Admin</td><td>Campo "URL de Imagen" al editar el proyecto</td></tr>
+      <tr><td>Fotos de noticias</td><td>Panel Admin</td><td>Campo "URL de Imagen" al editar la noticia</td></tr>
+    </table>
+
+    <div class="tip"><p><strong>Tip:</strong> Para que las fotos del hero se vean bien, usa imágenes horizontales (paisaje) de al menos <strong>1400 × 600 px</strong>. Si son más oscuras, mejor: el overlay negro las oscurece automáticamente para que el texto sea legible.</p></div>
+  </section>
+
+  <!-- ==================== 4. EMPLEOS ==================== -->
+  <section id="empleos">
+    <h2>4. Ofertas de Empleo</h2>
+    <p>Las ofertas están en <span class="file">carrera.html</span>, dentro de la sección <code>&lt;!-- POSICIONES ABIERTAS --&gt;</code>. Cada oferta es un bloque de código delimitado por comentarios como <code>&lt;!-- Posición 1 --&gt;</code>.</p>
+
+    <h3>Editar una oferta existente</h3>
+    <ol class="steps">
+      <li><p>Abre <span class="file">carrera.html</span> en VS Code.</p></li>
+      <li><p>Pulsa <code>Ctrl + F</code> y busca el título de la oferta (ej: <em>"Jefe de Obra Internacional"</em>).</p></li>
+      <li><p>Edita el título (<code>&lt;h3&gt;</code>), el badge de nivel, la descripción (<code>&lt;p&gt;</code>) y los tres requisitos (<code>&lt;span&gt;</code> con icono).</p></li>
+    </ol>
+
+    <h3>Añadir una nueva oferta</h3>
+    <ol class="steps">
+      <li><p>Copia el bloque completo de una oferta existente (desde <code>&lt;!-- Posición N --&gt;</code> hasta su <code>&lt;/div&gt;</code> de cierre).</p></li>
+      <li><p>Pégalo justo antes del <code>&lt;/div&gt;</code> que cierra <code>&lt;div class="space-y-5 stagger"&gt;</code>.</p></li>
+      <li><p>Modifica el contenido del bloque pegado con los datos de la nueva oferta.</p></li>
+    </ol>
+
+    <h3>Eliminar una oferta</h3>
+    <ol class="steps">
+      <li><p>Localiza el comentario <code>&lt;!-- Posición N --&gt;</code> de la oferta a eliminar.</p></li>
+      <li><p>Selecciona desde ese comentario hasta el <code>&lt;/div&gt;</code> de cierre del bloque (el último de la oferta, antes del siguiente comentario <code>&lt;!-- Posición --&gt;</code>).</p></li>
+      <li><p>Pulsa <code>Supr</code> o <code>Backspace</code>.</p></li>
+    </ol>
+
+    <h3>Cambiar el badge de nivel</h3>
+    <p>El badge de color aparece sobre el título. Hay dos estilos:</p>
+    <pre><span class="c">&lt;!-- Badge dorado (posición senior/directiva) --&gt;</span>
+&lt;span class=<span class="s">"... text-[#0b1f3a] bg-[#C49A3C]"</span>&gt;Dirección&lt;/span&gt;
+
+<span class="c">&lt;!-- Badge azul (posición junior) --&gt;</span>
+&lt;span class=<span class="s">"... bg-[#30628d] text-white"</span>&gt;Junior&lt;/span&gt;</pre>
+    <p>Cambia el texto del badge y el color según corresponda.</p>
+  </section>
+
+  <!-- ==================== 5. COLORES ==================== -->
+  <section id="colores">
+    <h2>5. Cambiar Colores y Estilo</h2>
+    <p>Los colores principales están definidos en <span class="file">js/tailwind-config.js</span>. Si cambias un color ahí, se actualiza en toda la web automáticamente.</p>
+
+    <h3>Archivo: js/tailwind-config.js</h3>
+    <pre>colors: {
+  primary:  <span class="s">'#000615'</span>,   <span class="c">// Negro profundo (fondo hero, texto)</span>
+  navy:     <span class="s">'#0b1f3a'</span>,   <span class="c">// Azul marino (fondos oscuros, botones)</span>
+  steel:    <span class="s">'#30628d'</span>,   <span class="c">// Azul medio (iconos, acentos)</span>
+  gold:     <span class="s">'#C49A3C'</span>,   <span class="c">// Dorado (acento principal, hover)</span>
+  bgsoft:   <span class="s">'#fcf8fb'</span>,   <span class="c">// Blanco roto (fondo de todas las páginas)</span>
+  surface:  <span class="s">'#f6f3f5'</span>,   <span class="c">// Gris suave (fondos de secciones)</span>
+  border:   <span class="s">'#c4c6ce'</span>,   <span class="c">// Gris borde (líneas, separadores)</span>
+  muted:    <span class="s">'#75777e'</span>,   <span class="c">// Gris texto secundario</span>
+  body:     <span class="s">'#44474d'</span>,   <span class="c">// Gris texto de párrafos</span>
+}</pre>
+
+    <div class="tip"><p><strong>Tip:</strong> Para cambiar el color dorado de los acentos por otro color corporativo, cambia únicamente el valor de <code>gold</code>. Afectará a todos los botones hover, barras decorativas y badges dorados de la web.</p></div>
+
+    <h3>Animaciones y estilos especiales</h3>
+    <p>Las animaciones (fade-in, transiciones de página, barra de progreso) están en <span class="file">css/custom.css</span>. No es necesario tocarlas salvo que quieras personalizar duraciones o efectos.</p>
+  </section>
+
+  <!-- ==================== 6. NAV Y FOOTER ==================== -->
+  <section id="nav-footer">
+    <h2>6. Menú de Navegación y Footer</h2>
+    <p>El menú y el footer son componentes compartidos que se inyectan en todas las páginas automáticamente desde <span class="file">js/components.js</span>. Cualquier cambio en ese archivo afecta a toda la web.</p>
+
+    <h3>Cambiar el logo o nombre en el menú</h3>
+    <p>Busca la función <code>renderNav()</code> en <span class="file">js/components.js</span>. Localiza el bloque del logo:</p>
+    <pre>&lt;span class=<span class="s">"font-black..."</span>&gt;ALVENTOR&lt;/span&gt;
+&lt;span class=<span class="s">"font-light..."</span>&gt;EPC &amp;amp; Construcción&lt;/span&gt;</pre>
+    <p>Sustituye el texto por el que quieras.</p>
+
+    <h3>Añadir o quitar páginas del menú</h3>
+    <p>Busca el array <code>NAV_LINKS</code> al inicio de <span class="file">js/components.js</span> y añade o elimina entradas:</p>
+    <pre>{ href: <span class="s">'nueva-pagina.html'</span>, label: <span class="s">'Nueva Página'</span> }</pre>
+
+    <h3>Cambiar datos del footer</h3>
+    <p>Busca la función <code>renderFooter()</code> en <span class="file">js/components.js</span>. Localiza los textos de dirección, teléfono y email y edítalos directamente.</p>
+  </section>
+
+  <!-- ==================== 7. MAPA DE ARCHIVOS ==================== -->
+  <section id="mapa-archivos">
+    <h2>7. Mapa de Archivos</h2>
+    <table>
+      <tr><th>Archivo / Carpeta</th><th>Para qué sirve</th><th>¿Se edita?</th></tr>
+      <tr><td><span class="file">index.html</span></td><td>Página de inicio</td><td><span class="badge badge-green">Sí — textos e imágenes</span></td></tr>
+      <tr><td><span class="file">servicios.html</span></td><td>Página de servicios</td><td><span class="badge badge-green">Sí — textos e imágenes</span></td></tr>
+      <tr><td><span class="file">proyectos.html</span></td><td>Portfolio de proyectos (grid dinámico)</td><td><span class="badge badge-blue">Solo estructura</span></td></tr>
+      <tr><td><span class="file">quienes-somos.html</span></td><td>Página corporativa</td><td><span class="badge badge-green">Sí — textos e imágenes</span></td></tr>
+      <tr><td><span class="file">actualidad.html</span></td><td>Noticias (feed dinámico)</td><td><span class="badge badge-blue">Solo estructura</span></td></tr>
+      <tr><td><span class="file">contacto.html</span></td><td>Contacto y formulario</td><td><span class="badge badge-green">Sí — dirección, teléfono, email</span></td></tr>
+      <tr><td><span class="file">carrera.html</span></td><td>Ofertas de empleo</td><td><span class="badge badge-green">Sí — ofertas en el HTML</span></td></tr>
+      <tr><td><span class="file">admin/index.html</span></td><td>Panel de administración</td><td><span class="badge badge-gold">No tocar</span></td></tr>
+      <tr><td><span class="file">admin/admin.js</span></td><td>Lógica del panel admin</td><td><span class="badge badge-gold">No tocar</span></td></tr>
+      <tr><td><span class="file">js/data.js</span></td><td>Datos por defecto + funciones de datos</td><td><span class="badge badge-green">Sí — datos iniciales</span></td></tr>
+      <tr><td><span class="file">js/components.js</span></td><td>Nav y footer compartidos</td><td><span class="badge badge-green">Sí — logo, menú, footer</span></td></tr>
+      <tr><td><span class="file">js/main.js</span></td><td>Animaciones e interacciones</td><td><span class="badge badge-gold">No tocar</span></td></tr>
+      <tr><td><span class="file">js/tailwind-config.js</span></td><td>Colores y tipografía</td><td><span class="badge badge-green">Sí — colores corporativos</span></td></tr>
+      <tr><td><span class="file">css/custom.css</span></td><td>Animaciones CSS personalizadas</td><td><span class="badge badge-gold">No tocar</span></td></tr>
+    </table>
+  </section>
+
+  <!-- ==================== 8. COLORES REFERENCIA ==================== -->
+  <section id="colores-ref">
+    <h2>8. Colores de Referencia</h2>
+    <table>
+      <tr><th>Nombre</th><th>Código Hex</th><th>Uso principal</th></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#000615;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Primary</td><td><code>#000615</code></td><td>Texto principal, fondo hero</td></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#0b1f3a;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Navy</td><td><code>#0b1f3a</code></td><td>Fondos oscuros, botones, nav</td></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#30628d;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Steel Blue</td><td><code>#30628d</code></td><td>Iconos, acentos secundarios</td></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#C49A3C;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Gold</td><td><code>#C49A3C</code></td><td>Acento dorado, hover botones, barras</td></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#fcf8fb;border:1px solid #c4c6ce;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Background</td><td><code>#fcf8fb</code></td><td>Fondo de todas las páginas</td></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#f6f3f5;border:1px solid #c4c6ce;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Surface</td><td><code>#f6f3f5</code></td><td>Fondos de secciones alternas</td></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#44474d;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Body text</td><td><code>#44474d</code></td><td>Párrafos y descripciones</td></tr>
+      <tr><td><span style="display:inline-block;width:14px;height:14px;background:#75777e;border-radius:2px;margin-right:6px;vertical-align:middle"></span>Muted</td><td><code>#75777e</code></td><td>Texto secundario, labels</td></tr>
+    </table>
+  </section>
+
+  <!-- ==================== 9. FAQ ==================== -->
+  <section id="faq">
+    <h2>9. Preguntas Frecuentes</h2>
+
+    <h3>¿Los cambios del panel admin se guardan para siempre?</h3>
+    <p>Se guardan en el <strong>localStorage</strong> del navegador, que es permanente mientras no borres el historial. Si en el futuro publicas la web en un servidor, necesitarás una base de datos real (se puede añadir). Para uso interno o durante el desarrollo, localStorage funciona perfectamente.</p>
+
+    <h3>Borré el historial del navegador y perdí los datos. ¿Qué hago?</h3>
+    <p>Los datos por defecto (los ejemplos iniciales) están en <span class="file">js/data.js</span> en los arrays <code>defaultProjects</code> y <code>defaultNews</code>. Cuando el localStorage está vacío, la web los carga automáticamente. Para recuperar tus datos personalizados, tendrás que volver a introducirlos desde el panel admin.</p>
+    <div class="tip"><p><strong>Recomendación:</strong> Si añades muchos proyectos y noticias desde el panel, exporta los datos periódicamente. Abre la consola del navegador (<code>F12</code> → pestaña <em>Console</em>) y escribe <code>localStorage.getItem('alventor_projects')</code> para copiar los datos.</p></div>
+
+    <h3>¿Cómo añado una página nueva?</h3>
+    <ol class="steps">
+      <li><p>Copia cualquier página existente (ej: <span class="file">contacto.html</span>) y renómbrala (ej: <span class="file">certificaciones.html</span>).</p></li>
+      <li><p>Edita el contenido dentro de <code>&lt;main&gt;</code>. El nav y footer se inyectan solos.</p></li>
+      <li><p>Añade el nuevo enlace en <span class="file">js/components.js</span> dentro del array <code>NAV_LINKS</code>.</p></li>
+    </ol>
+
+    <h3>¿Cómo publico la web en internet?</h3>
+    <p>La web es 100% estática (solo HTML, CSS y JS), así que puedes subirla a cualquier servicio de hosting gratuito:</p>
+    <ul>
+      <li><strong>Netlify</strong> — arrastra la carpeta <span class="file">WEB ALVENTOR</span> a netlify.com/drop</li>
+      <li><strong>Vercel</strong> — conecta tu carpeta o repositorio de GitHub</li>
+      <li><strong>GitHub Pages</strong> — sube los archivos a un repositorio público</li>
+    </ul>
+
+    <h3>¿Por qué no se ven las animaciones al abrir el .html directamente?</h3>
+    <p>Algunos navegadores bloquean scripts cuando el archivo se abre directamente desde el disco (<code>file://</code>). Usa siempre <strong>Live Server</strong> en VS Code para ver la web correctamente durante el desarrollo.</p>
+
+    <h3>¿Cómo cambio la contraseña del panel admin?</h3>
+    <p>Abre <span class="file">admin/admin.js</span> y cambia el valor en la primera línea:</p>
+    <pre><span class="k">const</span> ADMIN_PASSWORD = <span class="s">'alventor2024'</span>; <span class="c">// ← cambia esto</span></pre>
+    <div class="warn"><p><strong>Nota:</strong> Esta contraseña es visible en el código fuente. Para un panel admin en producción real, la autenticación debe hacerse en el servidor, no en el cliente.</p></div>
+
+  </section>
+
+  <div style="margin-top: 80px; padding-top: 32px; border-top: 2px solid #e4e2e4; text-align: center;">
+    <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div style="width:16px;height:16px;background:#C49A3C;"></div>
+      <span style="font-size:13px;font-weight:800;letter-spacing:0.1em;color:#0b1f3a;text-transform:uppercase;">Alventor</span>
+    </div>
+    <p style="font-size:11px;color:#75777e;margin:0;">Manual de uso interno — Web corporativa EPC</p>
+  </div>
+
+</main>
+</div>
+
+<script>
+  // Active sidebar link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.sidebar-link');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

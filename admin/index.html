@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin | Alventor</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="../js/tailwind-config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24 }
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Login */
+    #login-screen { transition: opacity 0.4s ease; }
+
+    /* Toast */
+    #toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+      transform: translateY(120%); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      min-width: 280px;
+    }
+    #toast.show { transform: translateY(0); }
+
+    /* Modal */
+    #modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,6,21,0.7);
+      z-index: 1000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+    }
+    #modal-overlay.open { opacity: 1; pointer-events: all; }
+    #modal-box {
+      background: #fff; width: 100%; max-width: 640px; max-height: 90vh;
+      overflow-y: auto; transform: translateY(24px); transition: transform 0.25s ease;
+    }
+    #modal-overlay.open #modal-box { transform: translateY(0); }
+
+    /* Tab */
+    .tab-btn.active { background: #0b1f3a; color: #fff; border-color: #0b1f3a; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* Table rows */
+    tbody tr:hover { background: #f6f3f5; }
+
+    /* Sidebar */
+    #sidebar { width: 240px; flex-shrink: 0; }
+  </style>
+</head>
+<body class="bg-[#f6f3f5] text-[#1b1b1d]">
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="login-screen" class="min-h-screen flex items-center justify-center bg-[#0b1f3a]">
+  <div class="bg-white w-full max-w-sm p-10 shadow-2xl">
+    <div class="mb-8 text-center">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <div class="w-8 h-8 bg-[#C49A3C]"></div>
+        <span class="text-xl font-black text-[#0b1f3a] tracking-tight">ALVENTOR</span>
+      </div>
+      <p class="text-[10px] font-bold uppercase tracking-widest text-[#75777e]">Panel de Administración</p>
+    </div>
+    <form id="login-form" class="space-y-5">
+      <div>
+        <label class="block text-[10px] font-bold uppercase tracking-widest text-[#75777e] mb-2">Contraseña</label>
+        <input id="login-pass" type="password" placeholder="••••••••••••"
+          class="w-full border border-[#c4c6ce] px-4 py-3 text-sm focus:outline-none focus:border-[#0b1f3a] transition-colors">
+      </div>
+      <p id="login-error" class="hidden text-xs text-red-600 font-medium">Contraseña incorrecta.</p>
+      <button type="submit"
+        class="w-full bg-[#0b1f3a] text-white py-3 text-[11px] font-black uppercase tracking-widest hover:bg-[#C49A3C] hover:text-[#000615] transition-colors duration-200">
+        Acceder
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard" class="hidden min-h-screen flex flex-col">
+
+  <!-- Top bar -->
+  <header class="bg-[#0b1f3a] text-white h-16 flex items-center justify-between px-6 flex-shrink-0 shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="w-6 h-6 bg-[#C49A3C]"></div>
+      <span class="font-black tracking-tight text-sm uppercase">Alventor Admin</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="../index.html" target="_blank"
+        class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7587a7] hover:text-[#C49A3C] transition-colors">
+        <span class="material-symbols-outlined text-sm">open_in_new</span> Ver web
+      </a>
+      <button id="logout-btn"
+        class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7587a7] hover:text-white transition-colors">
+        <span class="material-symbols-outlined text-sm">logout</span> Salir
+      </button>
+    </div>
+  </header>
+
+  <div class="flex flex-1 overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-[#0b1f3a] text-white flex flex-col py-6 flex-shrink-0">
+      <nav class="space-y-1 px-3">
+        <button data-tab="proyectos"
+          class="sidebar-nav w-full flex items-center gap-3 px-4 py-3 text-[11px] font-bold uppercase tracking-widest text-[#7587a7] hover:bg-white/10 hover:text-white transition-colors rounded-sm text-left">
+          <span class="material-symbols-outlined text-base">business_center</span>
+          Proyectos
+        </button>
+        <button data-tab="noticias"
+          class="sidebar-nav w-full flex items-center gap-3 px-4 py-3 text-[11px] font-bold uppercase tracking-widest text-[#7587a7] hover:bg-white/10 hover:text-white transition-colors rounded-sm text-left">
+          <span class="material-symbols-outlined text-base">newspaper</span>
+          Noticias
+        </button>
+      </nav>
+      <div class="mt-auto px-4 pb-4">
+        <button id="reset-btn"
+          class="w-full flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#7587a7] hover:text-red-400 transition-colors py-2">
+          <span class="material-symbols-outlined text-sm">restart_alt</span>
+          Restaurar datos
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 overflow-y-auto p-8">
+
+      <!-- ===== TAB: PROYECTOS ===== -->
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-black text-[#0b1f3a]">Proyectos</h1>
+            <p id="proyectos-count" class="text-sm text-[#75777e] mt-1"></p>
+          </div>
+          <button id="add-proyecto-btn"
+            class="inline-flex items-center gap-2 bg-[#0b1f3a] text-white px-6 py-3 text-[11px] font-black uppercase tracking-widest hover:bg-[#C49A3C] hover:text-[#000615] transition-colors duration-200">
+            <span class="material-symbols-outlined text-sm">add</span>
+            Nuevo Proyecto
+          </button>
+        </div>
+
+        <div class="bg-white border border-[#c4c6ce] overflow-hidden">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-[#c4c6ce] bg-[#f6f3f5]">
+                <th class="text-left px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e]">Proyecto</th>
+                <th class="text-left px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e] hidden md:table-cell">Sector</th>
+                <th class="text-left px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e] hidden lg:table-cell">Ubicación</th>
+                <th class="text-left px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e] hidden lg:table-cell">Estado</th>
+                <th class="text-right px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e]">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="proyectos-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== TAB: NOTICIAS ===== -->
+      <div id="tab-noticias" class="tab-pane">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-black text-[#0b1f3a]">Noticias</h1>
+            <p id="noticias-count" class="text-sm text-[#75777e] mt-1"></p>
+          </div>
+          <button id="add-noticia-btn"
+            class="inline-flex items-center gap-2 bg-[#0b1f3a] text-white px-6 py-3 text-[11px] font-black uppercase tracking-widest hover:bg-[#C49A3C] hover:text-[#000615] transition-colors duration-200">
+            <span class="material-symbols-outlined text-sm">add</span>
+            Nueva Noticia
+          </button>
+        </div>
+
+        <div class="bg-white border border-[#c4c6ce] overflow-hidden">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-[#c4c6ce] bg-[#f6f3f5]">
+                <th class="text-left px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e]">Noticia</th>
+                <th class="text-left px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e] hidden md:table-cell">Categoría</th>
+                <th class="text-left px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e] hidden lg:table-cell">Fecha</th>
+                <th class="text-right px-5 py-4 text-[10px] font-bold uppercase tracking-widest text-[#75777e]">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="noticias-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div id="modal-overlay">
+  <div id="modal-box">
+    <div class="flex items-center justify-between p-6 border-b border-[#c4c6ce] bg-[#0b1f3a]">
+      <h2 id="modal-title" class="text-base font-black uppercase tracking-widest text-white"></h2>
+      <button id="modal-close" class="text-[#7587a7] hover:text-white transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div id="modal-body" class="p-6"></div>
+    <div class="flex justify-end gap-3 px-6 pb-6">
+      <button id="modal-cancel"
+        class="px-6 py-3 text-[11px] font-bold uppercase tracking-widest border border-[#c4c6ce] text-[#44474d] hover:border-[#0b1f3a] transition-colors">
+        Cancelar
+      </button>
+      <button id="modal-save"
+        class="px-6 py-3 text-[11px] font-black uppercase tracking-widest bg-[#0b1f3a] text-white hover:bg-[#C49A3C] hover:text-[#000615] transition-colors">
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast" class="bg-[#0b1f3a] text-white px-5 py-4 flex items-center gap-3 shadow-2xl">
+  <span id="toast-icon" class="material-symbols-outlined text-[#C49A3C]">check_circle</span>
+  <span id="toast-msg" class="text-sm font-medium"></span>
+</div>
+
+<!-- ===== CONFIRM DIALOG ===== -->
+<div id="confirm-overlay" class="hidden fixed inset-0 bg-[#000615]/60 z-[2000] flex items-center justify-center">
+  <div class="bg-white p-8 max-w-sm w-full mx-4 shadow-2xl">
+    <h3 class="font-bold text-[#0b1f3a] mb-2">¿Confirmar eliminación?</h3>
+    <p id="confirm-msg" class="text-sm text-[#44474d] mb-6"></p>
+    <div class="flex gap-3 justify-end">
+      <button id="confirm-cancel"
+        class="px-5 py-2 text-[11px] font-bold uppercase tracking-widest border border-[#c4c6ce] hover:border-[#0b1f3a] transition-colors">
+        Cancelar
+      </button>
+      <button id="confirm-ok"
+        class="px-5 py-2 text-[11px] font-black uppercase tracking-widest bg-red-600 text-white hover:bg-red-700 transition-colors">
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
