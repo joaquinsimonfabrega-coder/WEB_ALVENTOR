@@ -156,8 +156,20 @@ function renderProyectosTable() {
     return;
   }
 
-  tbody.innerHTML = items.map(p => `
+  tbody.innerHTML = items.map((p, idx) => `
     <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors">
+      <td class="px-3 py-4 w-10">
+        <div class="flex flex-col gap-0.5">
+          <button onclick="moveProyecto('${p.id}', -1)" ${idx === 0 ? 'disabled' : ''}
+            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+            <span class="material-symbols-outlined text-base">arrow_drop_up</span>
+          </button>
+          <button onclick="moveProyecto('${p.id}', 1)" ${idx === items.length - 1 ? 'disabled' : ''}
+            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+            <span class="material-symbols-outlined text-base">arrow_drop_down</span>
+          </button>
+        </div>
+      </td>
       <td class="px-5 py-4">
         <div class="font-semibold text-[#0b1f3a] text-sm leading-tight">${esc(p.title)}</div>
         <div class="text-xs text-[#75777e] mt-0.5">${esc(p.location || '')}</div>
@@ -300,6 +312,16 @@ function deleteProyecto(id, title) {
   });
 }
 
+function moveProyecto(id, dir) {
+  const list = AlventorData.getProjects();
+  const i = list.findIndex(p => String(p.id) === String(id));
+  const j = i + dir;
+  if (j < 0 || j >= list.length) return;
+  [list[i], list[j]] = [list[j], list[i]];
+  AlventorData.saveProjects(list);
+  renderProyectosTable();
+}
+
 function readProyectoForm() {
   const title = document.getElementById('f-title')?.value.trim();
   const location = document.getElementById('f-location')?.value.trim();
@@ -345,8 +367,20 @@ function renderNoticiasTable() {
     return;
   }
 
-  tbody.innerHTML = items.map(n => `
+  tbody.innerHTML = items.map((n, idx) => `
     <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors">
+      <td class="px-3 py-4 w-10">
+        <div class="flex flex-col gap-0.5">
+          <button onclick="moveNoticia('${n.id}', -1)" ${idx === 0 ? 'disabled' : ''}
+            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+            <span class="material-symbols-outlined text-base">arrow_drop_up</span>
+          </button>
+          <button onclick="moveNoticia('${n.id}', 1)" ${idx === items.length - 1 ? 'disabled' : ''}
+            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+            <span class="material-symbols-outlined text-base">arrow_drop_down</span>
+          </button>
+        </div>
+      </td>
       <td class="px-5 py-4">
         <div class="font-semibold text-[#0b1f3a] text-sm leading-tight">${esc(n.title)}</div>
         <div class="text-xs text-[#75777e] mt-0.5 line-clamp-1">${esc(n.excerpt || '')}</div>
@@ -458,6 +492,16 @@ function deleteNoticia(id, title) {
     renderNoticiasTable();
     showToast('Noticia eliminada.', 'error');
   });
+}
+
+function moveNoticia(id, dir) {
+  const list = AlventorData.getNews();
+  const i = list.findIndex(n => String(n.id) === String(id));
+  const j = i + dir;
+  if (j < 0 || j >= list.length) return;
+  [list[i], list[j]] = [list[j], list[i]];
+  AlventorData.saveNews(list);
+  renderNoticiasTable();
 }
 
 function readNoticiaForm() {
