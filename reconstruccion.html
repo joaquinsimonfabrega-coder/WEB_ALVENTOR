@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-container": "#0b1f3a",
+                "on-tertiary-container": "#a88124",
+                "on-surface-variant": "#44474d",
+                "on-primary": "#ffffff",
+                "surface-container-high": "#eae7ea",
+                "surface-container-highest": "#e4e2e4",
+                "on-tertiary-fixed-variant": "#5c4300",
+                "on-tertiary-fixed": "#261a00",
+                "on-secondary-fixed-variant": "#104a74",
+                "on-primary-fixed-variant": "#364764",
+                "tertiary-fixed": "#ffdea0",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#fcf8fb",
+                "on-background": "#1b1b1d",
+                "secondary-fixed-dim": "#9ccbfc",
+                "surface-bright": "#fcf8fb",
+                "surface-container": "#f0edef",
+                "background": "#fcf8fb",
+                "tertiary": "#0b0600",
+                "secondary": "#30628d",
+                "on-error": "#ffffff",
+                "on-secondary-fixed": "#001d33",
+                "inverse-surface": "#303032",
+                "surface-container-low": "#f6f3f5",
+                "tertiary-fixed-dim": "#eec05e",
+                "surface-dim": "#dcd9dc",
+                "secondary-fixed": "#cfe5ff",
+                "primary-fixed": "#d6e3ff",
+                "surface-tint": "#4d5f7d",
+                "surface-variant": "#e4e2e4",
+                "inverse-on-surface": "#f3f0f2",
+                "on-error-container": "#93000a",
+                "error-container": "#ffdad6",
+                "outline": "#75777e",
+                "on-surface": "#1b1b1d",
+                "on-secondary-container": "#245882",
+                "on-tertiary": "#ffffff",
+                "on-primary-fixed": "#071c36",
+                "outline-variant": "#c4c6ce",
+                "primary-fixed-dim": "#b5c7ea",
+                "on-secondary": "#ffffff",
+                "secondary-container": "#9fceff",
+                "primary": "#000615",
+                "error": "#ba1a1a",
+                "inverse-primary": "#b5c7ea",
+                "tertiary-container": "#2a1d00",
+                "on-primary-container": "#7587a7"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-md": "16px",
+                "unit": "4px",
+                "section-gap": "80px",
+                "stack-sm": "8px",
+                "margin-page": "48px",
+                "stack-lg": "32px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "headline-h3": ["Inter"],
+                "headline-h1": ["Inter"],
+                "display-lg": ["Inter"],
+                "headline-h2": ["Inter"],
+                "body-main": ["Inter"],
+                "body-large": ["Inter"],
+                "technical-label": ["Inter"],
+                "technical-data": ["Inter"]
+            },
+            "fontSize": {
+                "headline-h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-h1": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                "display-lg": ["64px", {"lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-h2": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "body-main": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "technical-label": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "technical-data": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-main">
+<!-- TopNavBar -->
+<nav class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+<div class="flex justify-between items-center h-20 px-12 max-w-[1440px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#0B1F3A] dark:text-slate-100 uppercase">ALVENTOR</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-sans text-sm tracking-wide uppercase font-medium text-slate-500 dark:text-slate-400 hover:text-[#0B1F3A] dark:hover:text-slate-200 transition-colors duration-200" href="#">Quiénes Somos</a>
+<a class="font-sans text-sm tracking-wide uppercase font-medium text-slate-500 dark:text-slate-400 hover:text-[#0B1F3A] dark:hover:text-slate-200 transition-colors duration-200" href="#">Servicios</a>
+<a class="font-sans text-sm tracking-wide uppercase font-medium text-[#0B1F3A] dark:text-[#C49A3C] border-b-2 border-[#C49A3C] pb-1" href="#">Reconstruction</a>
+<a class="font-sans text-sm tracking-wide uppercase font-medium text-slate-500 dark:text-slate-400 hover:text-[#0B1F3A] dark:hover:text-slate-200 transition-colors duration-200" href="#">Proyectos</a>
+<a class="font-sans text-sm tracking-wide uppercase font-medium text-slate-500 dark:text-slate-400 hover:text-[#0B1F3A] dark:hover:text-slate-200 transition-colors duration-200" href="#">Actualidad</a>
+<a class="font-sans text-sm tracking-wide uppercase font-medium text-slate-500 dark:text-slate-400 hover:text-[#0B1F3A] dark:hover:text-slate-200 transition-colors duration-200" href="#">Carrera</a>
+<a class="font-sans text-sm tracking-wide uppercase font-medium text-slate-500 dark:text-slate-400 hover:text-[#0B1F3A] dark:hover:text-slate-200 transition-colors duration-200" href="#">Contacto</a>
+</div>
+<button class="md:hidden text-[#0B1F3A]">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover" data-alt="A large-scale infrastructure construction site at twilight, featuring massive concrete pillars and steel reinforcements for a modern bridge or highway. The scene is captured with professional architectural photography techniques, emphasizing linear perspectives and industrial scale. The lighting is cold and technical, with high-contrast shadows and sharp highlights. The color palette is dominated by deep navy blues and industrial greys, aligned with a corporate, high-precision engineering aesthetic." src="https://lh3.googleusercontent.com/aida/ADBb0uh9infp_YVV5Jyn_7jnLKsV46GnIWxG8dBDYMd7j7_BBYWDoFQdl8_7GgI_KKMEl8Q39rA05dNN7CeaxvTdhAg6gO3pKBUNgD7z3J2drMG_FuzjVedF6jn15Pk0mYkyoSZWsrvPRiaySAsk2INPQX7gCbJHigW7xa9cN51pxzaRvElXtmVulrSkt5HrWbEjpqZzv7Rk9NPU3e1iUfNm67CBuAm9Oei6hIMmQn7ETv5xo2dYx91U3gxy8uMtIBdMZfdOniTLVqr6-fc"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container/90 via-primary-container/40 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-[1440px] mx-auto px-12 w-full">
+<div class="max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-on-tertiary-container/10 border border-on-tertiary-container/20 rounded mb-6">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+<span class="font-technical-label text-on-tertiary-container uppercase tracking-widest">Global Reconstruction Unit</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-white mb-8 leading-tight">Strategic Infrastructure for Complex Environments</h1>
+<p class="font-body-large text-body-large text-white/80 max-w-xl">
+                    Engineering resilience in challenging international landscapes through precision EPC execution and advanced technical capacity.
+                </p>
+<div class="mt-10 flex gap-4">
+<button class="px-8 py-4 bg-on-tertiary-container text-primary-container font-technical-label uppercase tracking-widest font-bold rounded-lg hover:bg-tertiary-fixed-dim transition-all">Download Capability Statement</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Introduction Section -->
+<section class="py-section-gap max-w-[1440px] mx-auto px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-5">
+<span class="font-technical-label text-on-tertiary-container uppercase block mb-4">Core Strategy</span>
+<h2 class="font-headline-h1 text-headline-h1 text-primary-container mb-8">Especialización en entornos de alta complejidad</h2>
+</div>
+<div class="lg:col-span-7 flex flex-col justify-center">
+<p class="font-body-large text-body-large text-on-surface-variant mb-6">
+                    Alventor ha consolidado una línea estratégica dedicada exclusivamente a la reconstrucción internacional y al desarrollo de infraestructuras críticas. Nuestra operatividad se basa en la integración total de servicios bajo el modelo **EPC (Engineering, Procurement, and Construction)**, garantizando una respuesta técnica robusta ante los desafíos logísticos y estructurales más exigentes.
+                </p>
+<p class="font-body-main text-body-main text-on-surface-variant">
+                    Nuestra capacidad técnica no solo se mide por la envergadura de las obras, sino por la resiliencia de las soluciones propuestas. Diseñamos y ejecutamos proyectos que sirven como espina dorsal para el crecimiento económico y la estabilidad operativa en regiones en fase de desarrollo o reconstrucción post-crisis, priorizando siempre la fiabilidad a largo plazo.
+                </p>
+</div>
+</div>
+</section>
+<!-- Our Approach (4 Columns Bento-ish) -->
+<section class="py-section-gap bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto px-12">
+<div class="text-center mb-16">
+<h3 class="font-headline-h2 text-headline-h2 text-primary-container mb-4">Our Technical Approach</h3>
+<div class="w-20 h-1 bg-on-tertiary-container mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-white p-8 rounded-lg border border-outline-variant hover:border-on-tertiary-container transition-all group">
+<div class="mb-6 text-primary-container group-hover:text-on-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-4xl" data-weight="fill">engineering</span>
+</div>
+<h4 class="font-headline-h3 text-headline-h3 mb-4">Ejecución EPC</h4>
+<p class="font-technical-data text-technical-data text-on-surface-variant">
+                        Gestión integral llave en mano. Desde el diseño conceptual hasta la puesta en marcha, asumimos la responsabilidad técnica total del proyecto.
+                    </p>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-8 rounded-lg border border-outline-variant hover:border-on-tertiary-container transition-all group">
+<div class="mb-6 text-primary-container group-hover:text-on-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-4xl" data-weight="fill">monitoring</span>
+</div>
+<h4 class="font-headline-h3 text-headline-h3 mb-4">Control de plazos y costes</h4>
+<p class="font-technical-data text-technical-data text-on-surface-variant">
+                        Aplicación de metodologías de control de proyectos rigurosas para asegurar el cumplimiento estricto de cronogramas en entornos volátiles.
+                    </p>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-8 rounded-lg border border-outline-variant hover:border-on-tertiary-container transition-all group">
+<div class="mb-6 text-primary-container group-hover:text-on-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-4xl" data-weight="fill">public</span>
+</div>
+<h4 class="font-headline-h3 text-headline-h3 mb-4">Experiencia internacional</h4>
+<p class="font-technical-data text-technical-data text-on-surface-variant">
+                        Capacidad de despliegue en múltiples geografías, gestionando normativa local y estándares internacionales simultáneamente.
+                    </p>
+</div>
+<!-- Card 4 -->
+<div class="bg-white p-8 rounded-lg border border-outline-variant hover:border-on-tertiary-container transition-all group">
+<div class="mb-6 text-primary-container group-hover:text-on-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-4xl" data-weight="fill">hub</span>
+</div>
+<h4 class="font-headline-h3 text-headline-h3 mb-4">Integración de sistemas</h4>
+<p class="font-technical-data text-technical-data text-on-surface-variant">
+                        Conectividad y automatización de infraestructuras para una gestión inteligente y resiliente ante futuros eventos imprevistos.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Target Clients (Visual block) -->
+<section class="py-section-gap max-w-[1440px] mx-auto px-12">
+<div class="flex flex-col lg:flex-row gap-gutter bg-primary-container rounded-xl overflow-hidden shadow-2xl">
+<div class="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
+<span class="font-technical-label text-tertiary-fixed-dim uppercase mb-6 tracking-widest">Global Partnerships</span>
+<h2 class="font-headline-h1 text-headline-h1 text-white mb-10">Target Clients</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<div class="h-px w-12 bg-tertiary-fixed-dim mb-2"></div>
+<span class="font-headline-h3 text-white text-lg">Gobiernos y agencias públicas</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="h-px w-12 bg-tertiary-fixed-dim mb-2"></div>
+<span class="font-headline-h3 text-white text-lg">Organismos multilaterales</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="h-px w-12 bg-tertiary-fixed-dim mb-2"></div>
+<span class="font-headline-h3 text-white text-lg">Grandes contratistas EPC</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="h-px w-12 bg-tertiary-fixed-dim mb-2"></div>
+<span class="font-headline-h3 text-white text-lg">Operadores industriales</span>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 relative h-[400px] lg:h-auto">
+<img alt="" class="w-full h-full object-cover grayscale brightness-50" data-alt="A professional aerial view of a massive port or logistical hub during operation. The scene shows orderly rows of shipping containers and massive gantry cranes against a backdrop of organized industrial infrastructure. The photography style is high-altitude and technical, focusing on the geometric patterns of the site. The lighting is clear and direct, reinforcing the corporate and international reach of the project, with subtle gold lens flares suggesting sunset." src="https://lh3.googleusercontent.com/aida/ADBb0uhkgN-pjHtj5N68rQUUQ6NPLTy0pyFiKK1ObOQ2Toyjz6gBe6zp3WZWk_jD7YvFEEMB0XK4JgHUglPapT9oQ8LquHieF5tq89IJRtGEpac0fC0_La4cjTkYuFOIB9zf_wHE8cdmMNrowL8pbqnkSBNqDKErJyWmi2iGZ7mN8GmLYEh3YmGeZmJ47R8CJm57UENEG2kgrn_vDfhaRGW9nRbKhZ6yesVG9481bxxjzYjMbz16B9uESI7zXaV7BGfJHe44VQfhEMcJwKw"/>
+<div class="absolute inset-0 bg-on-tertiary-container/10 mix-blend-overlay"></div>
+</div>
+</div>
+</section>
+<!-- Project Snapshot (Additional Visual Content) -->
+<section class="pb-section-gap max-w-[1440px] mx-auto px-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="relative rounded-lg overflow-hidden h-80 group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A macro shot of architectural blueprints and technical drawings spread across a large wooden table in a brightly lit engineering office. High-end technical tools like calipers and precision pens are placed carefully on the sheets. The focus is sharp on the intricate lines of a bridge design. The lighting is natural and sophisticated, conveying a workspace dedicated to meticulous planning and excellence in reconstruction." src="https://lh3.googleusercontent.com/aida/ADBb0uhxgnmKzMV0xUuHywcPeNdP9aGmQ56AS6EaKsLKmgbR0Zp4yXp0yWEcGsUExOwqLAuGvqh4NdjzrsCcd0JUd3S0YuTcxtaGrWcmEUzNZyHZTcl4NeP99gfWh411N5cz9aVmyNGY-B67i587EbYeP79-iabKjGxJj98_xeePBpVPnckWVmiXfiAV8AmgHbAnnIxLZJEFqtXPS9UGQ-RQyYEFe_QV-6CSIAX9gR-l0wE-it6cGV4egdBuP_bh_hg7ossR1XMTnNwI4w"/>
+<div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+<span class="text-white font-technical-label uppercase tracking-widest opacity-80">Infrastructure Design</span>
+<span class="text-white font-headline-h3">Precision Engineering</span>
+</div>
+</div>
+<div class="relative rounded-lg overflow-hidden h-80 group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A dramatic low-angle shot of a massive skyscraper's glass and steel skeleton under construction, reaching into a clear blue sky. The metallic surfaces reflect the brilliant sunlight, creating a high-key, modern aesthetic. The focus is on the structural integrity and the complex web of steel beams. This image represents the pinnacle of large-scale corporate construction and technical achievement." src="https://lh3.googleusercontent.com/aida/ADBb0ujZfO8NT_exnpfnCMle6epZyBAOiYXu_HdSxsbswGXNSXc2D9NPnPG6KDYFimzZBETHrq6a-bOnwD3z7fnkDR8E-4lOuNvGSz-t8joUX22hwGKsp4g4OVUTfz9NcpzPNukVBKBTa6JJTrqFvoj_OJe89B9_2xaVK9OIurQsTomRizJU-mrNmA7gNiaCaeXfZ2jI_WjVxHBAf7Jq8FyYiJAGduDUmyYrgXk3RjyNPkE9VqQIXNzvMgvOD0xR"/>
+<div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+<span class="text-white font-technical-label uppercase tracking-widest opacity-80">Urban Development</span>
+<span class="text-white font-headline-h3">Critical Resilience</span>
+</div>
+</div>
+<div class="relative rounded-lg overflow-hidden h-80 group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close-up detail of high-grade industrial valves and pressure gauges on a complex network of stainless steel pipes. The lighting is cool and technical, highlighting the polished surfaces and the high-precision instruments. This visual reinforces the theme of system integration and technical control in heavy industrial and infrastructure reconstruction environments." src="https://lh3.googleusercontent.com/aida/ADBb0ujKUq0NFqJ7dtFX2iqdr2BBvMRLOlYr-SN1oAKAPjwouv16opnP8hcJYBKq3pOG65BukewjfBQuVn7rucdUFkPd8h5VkvUEZ1rT8JF5op33x0tXiyLLOqXp1wTiu_5HavJ4-nWo1P_r8jA-6CB-qxOtudOLyFFu3vo8BYZdvAaSb7yj80Tnx-ok8comCYbC6oDWK06Oyu1Da79e7I_2CK7DF3m1l27LsmITPxNdF9MecWdRBkwFTsROjY4"/>
+<div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+<span class="text-white font-technical-label uppercase tracking-widest opacity-80">Systems Integration</span>
+<span class="text-white font-headline-h3">Operational Control</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Closing Message -->
+<section class="py-24 bg-[#0B1F3A] text-white overflow-hidden relative">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<img alt="" class="h-full object-contain" data-alt="A vertical, abstract graphical representation of technical data streams and vertical line patterns, resembling a high-frequency trading screen or a structural stress test readout. The aesthetic is purely mathematical and technical, utilizing a monochromatic scheme with high-contrast sharp edges to evoke a sense of digital precision and sophisticated engineering data management." src="https://lh3.googleusercontent.com/aida/ADBb0uhXhIVtWjajY-6pWGdYurZxTkDaa4ZAgsJuSht_xgJvbBpCMSQkedkAB9wzEUqCgQunjpHTO-vBeS8dvOTAgI75giK6OXozx8dxC7zLxxJigyNkvKq4NahiWloFd7WMOyDxuMLqH2gb38UYfWjroHrZN4EtR6DqW8q6utD6XuyggLDpjxXFVP-oIpkJRGA4RDuvPpzGLlDJOgZDnpCv-A3hGE1gMAKYs3s9rbMGip5ApMWuVv_5qPkQLWSaVn5qyg_E1dBE-FdURdI"/>
+</div>
+<div class="max-w-[1440px] mx-auto px-12 text-center relative z-10">
+<div class="max-w-4xl mx-auto">
+<p class="font-headline-h2 text-headline-h2 mb-12 leading-relaxed">
+                    ALVENTOR se posiciona como socio técnico en proyectos internacionales de alta complejidad, aportando capacidad real de ejecución en entornos donde la fiabilidad y la eficiencia son determinantes.
+                </p>
+<div class="flex justify-center gap-6">
+<button class="bg-on-tertiary-container text-primary-container px-10 py-4 font-technical-label uppercase tracking-widest font-bold rounded hover:bg-tertiary-fixed transition-colors">Start Consultation</button>
+<button class="border border-white/30 text-white px-10 py-4 font-technical-label uppercase tracking-widest font-bold rounded hover:bg-white/10 transition-colors">Technical Datasheet</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-12 py-16 max-w-[1440px] mx-auto">
+<div class="flex flex-col gap-6">
+<div class="text-lg font-bold text-[#0B1F3A] dark:text-slate-100 uppercase">ALVENTOR</div>
+<p class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400">
+                    Sede Central Murcia, España.<br/>
+                    Global Engineering &amp; Construction Excellence.
+                </p>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-technical-label text-[#0B1F3A] dark:text-slate-100 uppercase mb-2">Corporate</h5>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors" href="#">Quiénes Somos</a>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors" href="#">Servicios EPC</a>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors" href="#">Carrera Profesional</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-technical-label text-[#0B1F3A] dark:text-slate-100 uppercase mb-2">Legal</h5>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors" href="#">Legal Notice</a>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors" href="#">Privacy Policy</a>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors" href="#">Cookies Policy</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="font-technical-label text-[#0B1F3A] dark:text-slate-100 uppercase mb-2">Contact</h5>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">mail</span> solutions@alventor.com
+                </a>
+<a class="font-sans text-xs tracking-normal text-slate-500 dark:text-slate-400 hover:text-[#C49A3C] transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm">location_on</span> Murcia HQ, Spain
+                </a>
+</div>
+</div>
+<div class="px-12 py-8 border-t border-slate-200 dark:border-slate-800 max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-sans text-xs tracking-normal text-slate-500">© 2024 Alventor Engineering &amp; Construction. All rights reserved.</span>
+<div class="flex gap-6">
+<span class="font-sans text-xs tracking-normal text-slate-500">Sitemap</span>
+<span class="font-sans text-xs tracking-normal text-slate-500">Global Operations</span>
+</div>
+</div>
+</footer>
+</body></html>
+
