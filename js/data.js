@@ -10,69 +10,36 @@ const KEYS = {
 const DEFAULT_PROJECTS = [
   {
     id: 1,
-    title: "Centro Logístico Terminal T4",
-    description: "Ejecución integral de flujos de carga y automatización de sistemas de clasificación bajo contrato llave en mano.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDXBP6jJUsVPOnpUPKDQ5cEBkS912Lg2xz1YXn7hhOEVbs4uAvaUmgFyQNKRsToHbFQpRejL4wO-w0LhcvWGpAPP-jUEVKSsXL928Uza59sp3bQaQJXyhzeWSfh9A93Vblj6BOGX8vU16cUNAmKQdtvNOv4S3BmxqN4q3LSQqXcdBgORcUb5DzKtcTYoCgrR-My5niWeXU9PyFKYGNNNRQPECLhpLc3vEISH4rfFq6wRKzAt53NwDCpHztGMsVPeosn0w1fWeOgGgr2",
-    type: "EPC",
-    location: "Madrid, ESP",
-    sector: "infraestructuras",
-    badge: "Modelo EPC",
+    title: "Reforma Zonas Comunes Meliá Milano",
+    description: "Reforma integral de las zonas comunes del hotel Meliá Milano, incluyendo hall de entrada, áreas de restauración y espacios de uso general con acabados de alto standing en hotel en plena operación.",
+    image: "img/Melia Milano Hall.JPG",
+    type: "Rehabilitación",
+    location: "Milano, ITA",
+    sector: "edificacion",
+    badge: "Rehabilitación Hotelera",
     featured: true
   },
   {
     id: 2,
-    title: "Planta Bio-Masa Integrada",
-    description: "Diseño y ejecución integral de infraestructuras para procesamiento térmico y generación eléctrica de alta disponibilidad.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA5fHBMEDyMcjcpOY9Vww56TX-sCNXyttK5Yz4fkAsWbKXFXIY15Zg4SNEDRl_krqjO7uONe2oGjFs5i3ldLwBPSrVf3lDH0dUmBBAI1M5Cpbonqj1AjHn1GN-2ypp4Pw9QwxY1Va8zDZBpltutsk75qGvGNusfRczLej8Ec_ltUefrzfnuVfuOonUz3UO6AVRHfx0ZuN9FmtNQuaT3BRtbN8D6hFmDg1t96D06LW2rYpgiupTDg1Xbavh7ReFNvoiwOai9COa16-k-",
+    title: "Modernización Instalaciones Técnicas LAV Madrid - Sevilla",
+    description: "Modernización de instalaciones técnicas en la Línea de Alta Velocidad Madrid-Sevilla, incluyendo sistemas de control, señalización y electrificación bajo estrictos protocolos de seguridad ferroviaria.",
+    image: "img/Ave1.jpg",
     type: "EPC",
-    location: "Sevilla, ESP",
-    sector: "industrial",
+    location: "Madrid - Sevilla, ESP",
+    sector: "infraestructuras",
     badge: "Modelo EPC",
     featured: true
   },
   {
     id: 3,
-    title: "Resort Premium Costa del Sol",
-    description: "Construcción integral de activos hoteleros con control exhaustivo de calidad y acabados de ingeniería superior.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA0UlNs0GTvLKHfqEQMGqUW3VTF-qYLV4WOA7czCAD8bYMp1w7Po6pPPP7BImP6aPqEx223TYHCGCyKPG8oY7KmAGd31ljVwcEteJf7pvWdhvpkLnjazslN0wO3L67aLpxKvo2huf07j2KeYSccn0425K66g4lkgL-GZlwgIXA5jCk0CBhZoJHux-oOjq91b1wq7_F2F2VugG4GlE1mdnxGjFsiAf8og2wtdgotqH7v58QnSe5v1Mrd_o0pGPZICF7y20SnLwZGwr_P",
-    type: "Construcción",
-    location: "Málaga, ESP",
-    sector: "edificacion",
-    badge: "Construcción Especializada",
-    featured: true
-  },
-  {
-    id: 4,
-    title: "Base de Mantenimiento AVE",
-    description: "Modelo EPC para talleres industriales y centros de mantenimiento de alta velocidad con plazos de entrega estrictos.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhEPzQJp7cwRuycLhMwUPW3cmcWNiw41Uhw3IIfYmenoLeGqhveDLI2R6rAnM6UiNe8aawJqvFLsipJhMOLyYYmomhFWFdRM7c3O8neR0Am635AD0Tm_pzlkRzU7aFOyvpzKymp_mVny8idRdaykbRemxB0sF_sIBA5jk0ydd0OqfnC09CMXuBBBojgpsJ3XBMKPsrWpa_ZwYR9TKROIMdpfkFYNgNuGnIEctw4Pu5rOR9-HV_YVuHst8RI6yBDIPkHkMBzYbovYOT",
+    title: "Obras Civiles e Infraestructuras Básicas PTE 50000 Archena",
+    description: "Ejecución de obras civiles e infraestructuras básicas de la Plataforma Técnica de Ejecución PTE 50000 en Archena, incluyendo movimiento de tierras, cimentaciones y estructuras de acceso.",
+    image: "img/Archena2.jpg",
     type: "EPC",
-    location: "Barcelona, ESP",
+    location: "Archena, ESP",
     sector: "infraestructuras",
     badge: "Modelo EPC",
-    featured: false
-  },
-  {
-    id: 5,
-    title: "Ampliación Clínica Médica",
-    description: "Ejecución integral de áreas quirúrgicas y laboratorios con control ambiental crítico y entrega llave en mano.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9OV7OfoYaTq9N9Ww8uq5UQf1Is8UB3nOjt0M2_bTjtvBCVWMo1ZguAyYPyekBpwUVf__rjFX1CVJZLK7yMRoeb7AJrd32KD-zxIXp7KyyyhwvR-cDpo7hpuBq9umGCPiz1pijz8EXj-LSnOf9lNuhakCzWQXvSxF8MgjWrjvX8Y8WNJpentkyFzUxx5f5P1q67Eer6fDozg5RzE_-wPGy0Xz-cI-8GpOP081cCuHDJwsnQfIM9H1lGyz-7LZCYnJk3HKiF1nymquJ",
-    type: "Construcción",
-    location: "Valencia, ESP",
-    sector: "edificacion",
-    badge: "Construcción Especializada",
-    featured: false
-  },
-  {
-    id: 6,
-    title: "Data Center Tier III",
-    description: "Ejecución de sistemas críticos de potencia y climatización con control de redundancia y estándares de máxima seguridad.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBoEW2ef6iUkdyb8RqYmFQNXZ7lBhzwNFACUuEmnTwvHRvz_MRg2K1WkBL8lS2sQ0bnhSglh0U_FjuPAE25Ch2ORsU2qE142h861LTGZ7mBZHXLkxzoPcbSpofuj4kNrdP77nvF0xVt0o_-mP8vYDuEUdMJ5Ovw9EKWmKueT41dFx3EEBH4BREUpiJKpgAMQtEP8rNrj8zwYRj2fib1xGXNkwbE0JtnX3HgJvyi9RlcVhdztCEG4eKCuohrW0y9CjtCj9UGxyMrXHDT",
-    type: "Instalaciones",
-    location: "Bilbao, ESP",
-    sector: "instalaciones",
-    badge: "Instalaciones Técnicas",
-    featured: false
+    featured: true
   }
 ];
 
