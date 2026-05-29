@@ -39,7 +39,8 @@ const DEFAULT_PROJECTS = [
     location: "Archena, ESP",
     sector: "infraestructuras",
     badge: "Modelo EPC",
-    featured: true
+    featured: true,
+    hidden: true
   }
 ];
 
@@ -52,7 +53,8 @@ const DEFAULT_NEWS = [
     category: "inicio-obra",
     date: "2025-05-12",
     location: "Limonal - Costa Rica",
-    featured: true
+    featured: true,
+    hidden: true
   },
   {
     id: 2,
