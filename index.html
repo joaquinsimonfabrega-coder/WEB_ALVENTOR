@@ -272,12 +272,12 @@
   <script src="js/main.js"></script>
   <script>
     // Render featured projects
-    const featuredProj = AlventorData.getProjects().filter(p => p.featured).slice(0, 3);
+    const featuredProj = AlventorData.getVisibleProjects().filter(p => p.featured).slice(0, 3);
     document.getElementById('featured-projects').innerHTML =
       featuredProj.map(p => projectCardHTML(p)).join('');
 
     // Render latest news (featured + 2 others)
-    const allNews = AlventorData.getNews();
+    const allNews = AlventorData.getVisibleNews();
     const featuredNews = allNews.find(n => n.featured) || allNews[0];
     const sideNews = allNews.filter(n => n.id !== featuredNews.id).slice(0, 3);
 

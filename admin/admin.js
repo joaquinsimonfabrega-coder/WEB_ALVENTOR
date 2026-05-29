@@ -157,9 +157,12 @@ function renderProyectosTable() {
   }
 
   tbody.innerHTML = items.map(p => `
-    <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors">
+    <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors ${p.hidden ? 'opacity-40' : ''}">
       <td class="px-5 py-4">
-        <div class="font-semibold text-[#0b1f3a] text-sm leading-tight">${esc(p.title)}</div>
+        <div class="font-semibold text-[#0b1f3a] text-sm leading-tight flex items-center gap-2">
+          ${p.hidden ? '<span class="material-symbols-outlined text-sm text-slate-400" title="Oculto">visibility_off</span>' : ''}
+          ${esc(p.title)}
+        </div>
         <div class="text-xs text-[#75777e] mt-0.5">${esc(p.location || '')}</div>
       </td>
       <td class="px-5 py-4 hidden md:table-cell">
@@ -170,6 +173,10 @@ function renderProyectosTable() {
         <span class="text-[10px] font-bold px-2 py-1 rounded ${STATUS_COLORS[p.status] || 'bg-gray-100 text-gray-700'}">${STATUS_LABELS[p.status] || p.status || '—'}</span>
       </td>
       <td class="px-5 py-4 text-right whitespace-nowrap">
+        <button onclick="toggleProyecto('${p.id}')"
+          class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${p.hidden ? 'text-green-600 hover:text-green-800' : 'text-slate-400 hover:text-slate-700'} transition-colors mr-3">
+          <span class="material-symbols-outlined text-sm">${p.hidden ? 'visibility' : 'visibility_off'}</span> ${p.hidden ? 'Mostrar' : 'Ocultar'}
+        </button>
         <button onclick="editProyecto('${p.id}')"
           class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-[#30628d] hover:text-[#0b1f3a] transition-colors mr-3">
           <span class="material-symbols-outlined text-sm">edit</span> Editar
@@ -292,6 +299,13 @@ function editProyecto(id) {
   });
 }
 
+function toggleProyecto(id) {
+  AlventorData.toggleProjectVisibility(id);
+  renderProyectosTable();
+  const p = AlventorData.getProjects().find(x => String(x.id) === String(id));
+  showToast(p?.hidden ? 'Proyecto ocultado de la web.' : 'Proyecto visible en la web.');
+}
+
 function deleteProyecto(id, title) {
   openConfirm(`¿Eliminar el proyecto "${title}"? Esta acción no se puede deshacer.`, () => {
     AlventorData.deleteProject(id);
@@ -346,9 +360,12 @@ function renderNoticiasTable() {
   }
 
   tbody.innerHTML = items.map(n => `
-    <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors">
+    <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors ${n.hidden ? 'opacity-40' : ''}">
       <td class="px-5 py-4">
-        <div class="font-semibold text-[#0b1f3a] text-sm leading-tight">${esc(n.title)}</div>
+        <div class="font-semibold text-[#0b1f3a] text-sm leading-tight flex items-center gap-2">
+          ${n.hidden ? '<span class="material-symbols-outlined text-sm text-slate-400" title="Oculto">visibility_off</span>' : ''}
+          ${esc(n.title)}
+        </div>
         <div class="text-xs text-[#75777e] mt-0.5 line-clamp-1">${esc(n.excerpt || '')}</div>
       </td>
       <td class="px-5 py-4 hidden md:table-cell">
@@ -356,6 +373,10 @@ function renderNoticiasTable() {
       </td>
       <td class="px-5 py-4 hidden lg:table-cell text-sm text-[#44474d]">${fmtDateAdmin(n.date)}</td>
       <td class="px-5 py-4 text-right whitespace-nowrap">
+        <button onclick="toggleNoticia('${n.id}')"
+          class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${n.hidden ? 'text-green-600 hover:text-green-800' : 'text-slate-400 hover:text-slate-700'} transition-colors mr-3">
+          <span class="material-symbols-outlined text-sm">${n.hidden ? 'visibility' : 'visibility_off'}</span> ${n.hidden ? 'Mostrar' : 'Ocultar'}
+        </button>
         <button onclick="editNoticia('${n.id}')"
           class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-[#30628d] hover:text-[#0b1f3a] transition-colors mr-3">
           <span class="material-symbols-outlined text-sm">edit</span> Editar
@@ -450,6 +471,13 @@ function editNoticia(id) {
     renderNoticiasTable();
     showToast('Noticia actualizada.');
   });
+}
+
+function toggleNoticia(id) {
+  AlventorData.toggleNewsVisibility(id);
+  renderNoticiasTable();
+  const n = AlventorData.getNews().find(x => String(x.id) === String(id));
+  showToast(n?.hidden ? 'Noticia ocultada de la web.' : 'Noticia visible en la web.');
 }
 
 function deleteNoticia(id, title) {
