@@ -329,8 +329,8 @@ function toggleProyecto(id) {
 function toggleProyectoFeatured(id) {
   const featuredCount = AlventorData.getProjects().filter(p => p.featured).length;
   const p = AlventorData.getProjects().find(x => String(x.id) === String(id));
-  if (!p.featured && featuredCount >= 3) {
-    showToast('Ya hay 3 proyectos destacados. Quita uno antes de añadir otro (la portada solo muestra 3).', 'error');
+  if (!p.featured && featuredCount >= 6) {
+    showToast('Ya hay 6 proyectos destacados. Quita uno antes de añadir otro (la portada solo muestra 6).', 'error');
     return;
   }
   AlventorData.toggleProjectFeatured(id);

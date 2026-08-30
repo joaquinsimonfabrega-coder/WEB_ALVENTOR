@@ -273,7 +273,7 @@
   <script src="js/main.js"></script>
   <script>
     // Render featured projects
-    const featuredProj = AlventorData.getVisibleProjects().filter(p => p.featured).slice(0, 3);
+    const featuredProj = AlventorData.getVisibleProjects().filter(p => p.featured).slice(0, 6);
     document.getElementById('featured-projects').innerHTML =
       featuredProj.map(p => projectCardHTML(p)).join('');
 
