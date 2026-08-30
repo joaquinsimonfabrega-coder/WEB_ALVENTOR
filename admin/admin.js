@@ -527,6 +527,57 @@ function readNoticiaForm() {
   };
 }
 
+// ─── Export / Import data (para mover datos entre ordenadores) ──
+
+document.getElementById('export-btn').addEventListener('click', () => {
+  const payload = {
+    exportedAt: new Date().toISOString(),
+    proyectos: AlventorData.getProjects(),
+    noticias: AlventorData.getNews(),
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `alventor-data-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Datos exportados. Guarda el archivo .json descargado.');
+});
+
+const importFileInput = document.getElementById('import-file-input');
+
+document.getElementById('import-btn').addEventListener('click', () => {
+  importFileInput.click();
+});
+
+importFileInput.addEventListener('change', () => {
+  const file = importFileInput.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const payload = JSON.parse(reader.result);
+      if (!Array.isArray(payload.proyectos) || !Array.isArray(payload.noticias)) {
+        throw new Error('Formato inválido');
+      }
+      openConfirm('¿Importar estos datos? Se sobrescribirán los proyectos y noticias actuales de este navegador.', () => {
+        AlventorData.saveProjects(payload.proyectos);
+        AlventorData.saveNews(payload.noticias);
+        const active = document.querySelector('.tab-pane.active');
+        if (active?.id === 'tab-proyectos') renderProyectosTable();
+        if (active?.id === 'tab-noticias') renderNoticiasTable();
+        showToast('Datos importados correctamente.');
+      });
+    } catch {
+      showToast('El archivo no tiene un formato válido.', 'error');
+    }
+    importFileInput.value = '';
+  };
+  reader.readAsText(file);
+});
+
 // ─── Reset data ──────────────────────────────────
 
 document.getElementById('reset-btn').addEventListener('click', () => {

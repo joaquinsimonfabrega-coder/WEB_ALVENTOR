@@ -112,7 +112,18 @@
           Noticias
         </button>
       </nav>
-      <div class="mt-auto px-4 pb-4">
+      <div class="mt-auto px-4 pb-4 space-y-1">
+        <button id="export-btn"
+          class="w-full flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#7587a7] hover:text-[#C49A3C] transition-colors py-2">
+          <span class="material-symbols-outlined text-sm">download</span>
+          Exportar datos
+        </button>
+        <button id="import-btn"
+          class="w-full flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#7587a7] hover:text-[#C49A3C] transition-colors py-2">
+          <span class="material-symbols-outlined text-sm">upload</span>
+          Importar datos
+        </button>
+        <input type="file" id="import-file-input" accept="application/json" class="hidden">
         <button id="reset-btn"
           class="w-full flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#7587a7] hover:text-red-400 transition-colors py-2">
           <span class="material-symbols-outlined text-sm">restart_alt</span>
