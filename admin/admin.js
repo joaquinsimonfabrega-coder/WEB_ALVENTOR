@@ -173,6 +173,7 @@ function renderProyectosTable() {
       <td class="px-5 py-4">
         <div class="font-semibold text-[#0b1f3a] text-sm leading-tight flex items-center gap-2">
           ${p.hidden ? '<span class="material-symbols-outlined text-sm text-slate-400" title="Oculto">visibility_off</span>' : ''}
+          ${p.featured ? '<span class="material-symbols-outlined text-sm text-[#C49A3C]" title="Destacado en portada">star</span>' : ''}
           ${esc(p.title)}
         </div>
         <div class="text-xs text-[#75777e] mt-0.5">${esc(p.location || '')}</div>
@@ -185,6 +186,10 @@ function renderProyectosTable() {
         <span class="text-[10px] font-bold px-2 py-1 rounded ${STATUS_COLORS[p.status] || 'bg-gray-100 text-gray-700'}">${STATUS_LABELS[p.status] || p.status || '—'}</span>
       </td>
       <td class="px-5 py-4 text-right whitespace-nowrap">
+        <button onclick="toggleProyectoFeatured('${p.id}')"
+          class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${p.featured ? 'text-[#C49A3C] hover:text-[#a87e28]' : 'text-slate-400 hover:text-slate-700'} transition-colors mr-3">
+          <span class="material-symbols-outlined text-sm">star</span> ${p.featured ? 'Quitar de portada' : 'Destacar en portada'}
+        </button>
         <button onclick="toggleProyecto('${p.id}')"
           class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${p.hidden ? 'text-green-600 hover:text-green-800' : 'text-slate-400 hover:text-slate-700'} transition-colors mr-3">
           <span class="material-symbols-outlined text-sm">${p.hidden ? 'visibility' : 'visibility_off'}</span> ${p.hidden ? 'Mostrar' : 'Ocultar'}
@@ -316,6 +321,19 @@ function toggleProyecto(id) {
   renderProyectosTable();
   const p = AlventorData.getProjects().find(x => String(x.id) === String(id));
   showToast(p?.hidden ? 'Proyecto ocultado de la web.' : 'Proyecto visible en la web.');
+}
+
+function toggleProyectoFeatured(id) {
+  const featuredCount = AlventorData.getProjects().filter(p => p.featured).length;
+  const p = AlventorData.getProjects().find(x => String(x.id) === String(id));
+  if (!p.featured && featuredCount >= 3) {
+    showToast('Ya hay 3 proyectos destacados. Quita uno antes de añadir otro (la portada solo muestra 3).', 'error');
+    return;
+  }
+  AlventorData.toggleProjectFeatured(id);
+  renderProyectosTable();
+  const updated = AlventorData.getProjects().find(x => String(x.id) === String(id));
+  showToast(updated?.featured ? 'Proyecto destacado en portada.' : 'Proyecto quitado de portada.');
 }
 
 function deleteProyecto(id, title) {

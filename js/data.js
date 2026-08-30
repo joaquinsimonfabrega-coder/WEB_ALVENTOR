@@ -121,6 +121,11 @@ const AlventorData = {
     const i = list.findIndex(p => String(p.id) === String(id));
     if (i !== -1) { list[i].hidden = !list[i].hidden; this.saveProjects(list); }
   },
+  toggleProjectFeatured(id) {
+    const list = this.getProjects();
+    const i = list.findIndex(p => String(p.id) === String(id));
+    if (i !== -1) { list[i].featured = !list[i].featured; this.saveProjects(list); }
+  },
   getVisibleProjects() {
     return this.getProjects().filter(p => !p.hidden);
   },
