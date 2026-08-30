@@ -146,7 +146,7 @@
     let currentFilter = 'all';
 
     function renderNews(filter) {
-      const all = AlventorData.getNews();
+      const all = AlventorData.getVisibleNews();
       const filtered = filter === 'all' ? all : all.filter(n => n.category === filter);
       const feed = document.getElementById('news-feed');
       const count = document.getElementById('news-count');

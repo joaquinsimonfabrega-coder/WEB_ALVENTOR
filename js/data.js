@@ -39,7 +39,8 @@ const DEFAULT_PROJECTS = [
     location: "Archena, ESP",
     sector: "infraestructuras",
     badge: "Modelo EPC",
-    featured: true
+    featured: true,
+    hidden: true
   }
 ];
 
@@ -52,7 +53,8 @@ const DEFAULT_NEWS = [
     category: "inicio-obra",
     date: "2025-05-12",
     location: "Limonal - Costa Rica",
-    featured: true
+    featured: true,
+    hidden: true
   },
   {
     id: 2,
@@ -114,6 +116,14 @@ const AlventorData = {
   deleteProject(id) {
     this.saveProjects(this.getProjects().filter(p => String(p.id) !== String(id)));
   },
+  toggleProjectVisibility(id) {
+    const list = this.getProjects();
+    const i = list.findIndex(p => String(p.id) === String(id));
+    if (i !== -1) { list[i].hidden = !list[i].hidden; this.saveProjects(list); }
+  },
+  getVisibleProjects() {
+    return this.getProjects().filter(p => !p.hidden);
+  },
 
   /* NEWS */
   getNews() {
@@ -139,6 +149,14 @@ const AlventorData = {
   },
   deleteNewsItem(id) {
     this.saveNews(this.getNews().filter(n => String(n.id) !== String(id)));
+  },
+  toggleNewsVisibility(id) {
+    const list = this.getNews();
+    const i = list.findIndex(n => String(n.id) === String(id));
+    if (i !== -1) { list[i].hidden = !list[i].hidden; this.saveNews(list); }
+  },
+  getVisibleNews() {
+    return this.getNews().filter(n => !n.hidden);
   },
   resetToDefaults() {
     localStorage.removeItem(KEYS.projects);

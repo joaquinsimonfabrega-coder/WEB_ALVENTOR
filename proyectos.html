@@ -117,7 +117,7 @@
   <script src="js/main.js"></script>
   <script>
     function renderGrid(sector) {
-      const all = AlventorData.getProjects();
+      const all = AlventorData.getVisibleProjects();
       const filtered = sector === 'all' ? all : all.filter(p => p.sector === sector);
       const grid = document.getElementById('projects-grid');
       const empty = document.getElementById('empty-state');
