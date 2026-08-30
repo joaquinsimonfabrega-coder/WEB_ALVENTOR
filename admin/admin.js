@@ -585,26 +585,61 @@ importFileInput.addEventListener('change', () => {
 
   const reader = new FileReader();
   reader.onload = () => {
+    let payload;
     try {
-      const payload = JSON.parse(reader.result);
+      payload = JSON.parse(reader.result);
       if (!Array.isArray(payload.proyectos) || !Array.isArray(payload.noticias)) {
         throw new Error('Formato inválido');
       }
-      openConfirm('¿Importar estos datos? Se sobrescribirán los proyectos y noticias actuales de este navegador.', () => {
-        AlventorData.saveProjects(payload.proyectos);
-        AlventorData.saveNews(payload.noticias);
-        const active = document.querySelector('.tab-pane.active');
-        if (active?.id === 'tab-proyectos') renderProyectosTable();
-        if (active?.id === 'tab-noticias') renderNoticiasTable();
-        showToast('Datos importados correctamente.');
-      });
     } catch {
       showToast('El archivo no tiene un formato válido.', 'error');
+      importFileInput.value = '';
+      return;
     }
+    showImportChoice(payload);
     importFileInput.value = '';
   };
   reader.readAsText(file);
 });
+
+function showImportChoice(payload) {
+  openModal('Importar datos', `
+    <p class="text-sm text-[#44474d] mb-6">
+      El archivo contiene ${payload.proyectos.length} proyecto(s) y ${payload.noticias.length} noticia(s). ¿Cómo quieres importarlos?
+    </p>
+    <div class="space-y-3">
+      <button id="import-combine-btn" type="button"
+        class="w-full bg-[#0b1f3a] text-white py-3 text-[11px] font-black uppercase tracking-widest hover:bg-[#C49A3C] hover:text-[#000615] transition-colors">
+        Combinar con los existentes
+      </button>
+      <button id="import-replace-btn" type="button"
+        class="w-full border border-red-500 text-red-600 py-3 text-[11px] font-black uppercase tracking-widest hover:bg-red-50 transition-colors">
+        Reemplazar todo
+      </button>
+    </div>
+  `, () => {});
+  modalSave.classList.add('hidden');
+  document.getElementById('import-combine-btn').addEventListener('click', () => runImport(payload, 'combine'));
+  document.getElementById('import-replace-btn').addEventListener('click', () => runImport(payload, 'replace'));
+}
+
+function runImport(payload, mode) {
+  if (mode === 'combine') {
+    const newProjects = payload.proyectos.map((p, i) => ({ ...p, id: Date.now() + i }));
+    const newNews = payload.noticias.map((n, i) => ({ ...n, id: Date.now() + 1000 + i }));
+    AlventorData.saveProjects([...AlventorData.getProjects(), ...newProjects]);
+    AlventorData.saveNews([...AlventorData.getNews(), ...newNews]);
+  } else {
+    AlventorData.saveProjects(payload.proyectos);
+    AlventorData.saveNews(payload.noticias);
+  }
+  modalSave.classList.remove('hidden');
+  closeModal();
+  const active = document.querySelector('.tab-pane.active');
+  if (active?.id === 'tab-proyectos') renderProyectosTable();
+  if (active?.id === 'tab-noticias') renderNoticiasTable();
+  showToast(mode === 'combine' ? 'Datos combinados correctamente.' : 'Datos reemplazados correctamente.');
+}
 
 // ─── Reset data ──────────────────────────────────
 
