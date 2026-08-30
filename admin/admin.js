@@ -157,17 +157,20 @@ function renderProyectosTable() {
   }
 
   tbody.innerHTML = items.map((p, idx) => `
-    <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors ${p.hidden ? 'opacity-40' : ''}">
+    <tr data-id="${p.id}" draggable="true" class="border-b border-[#e4e2e4] last:border-0 transition-colors ${p.hidden ? 'opacity-40' : ''}">
       <td class="px-3 py-4 w-10">
-        <div class="flex flex-col gap-0.5">
-          <button onclick="moveProyecto('${p.id}', -1)" ${idx === 0 ? 'disabled' : ''}
-            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
-            <span class="material-symbols-outlined text-base">arrow_drop_up</span>
-          </button>
-          <button onclick="moveProyecto('${p.id}', 1)" ${idx === items.length - 1 ? 'disabled' : ''}
-            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
-            <span class="material-symbols-outlined text-base">arrow_drop_down</span>
-          </button>
+        <div class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-base text-[#c4c6ce] cursor-grab active:cursor-grabbing" title="Arrastra para reordenar">drag_indicator</span>
+          <div class="flex flex-col gap-0.5">
+            <button onclick="moveProyecto('${p.id}', -1)" ${idx === 0 ? 'disabled' : ''}
+              class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+              <span class="material-symbols-outlined text-base">arrow_drop_up</span>
+            </button>
+            <button onclick="moveProyecto('${p.id}', 1)" ${idx === items.length - 1 ? 'disabled' : ''}
+              class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+              <span class="material-symbols-outlined text-base">arrow_drop_down</span>
+            </button>
+          </div>
         </div>
       </td>
       <td class="px-5 py-4">
@@ -400,17 +403,20 @@ function renderNoticiasTable() {
   }
 
   tbody.innerHTML = items.map((n, idx) => `
-    <tr class="border-b border-[#e4e2e4] last:border-0 transition-colors ${n.hidden ? 'opacity-40' : ''}">
+    <tr data-id="${n.id}" draggable="true" class="border-b border-[#e4e2e4] last:border-0 transition-colors ${n.hidden ? 'opacity-40' : ''}">
       <td class="px-3 py-4 w-10">
-        <div class="flex flex-col gap-0.5">
-          <button onclick="moveNoticia('${n.id}', -1)" ${idx === 0 ? 'disabled' : ''}
-            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
-            <span class="material-symbols-outlined text-base">arrow_drop_up</span>
-          </button>
-          <button onclick="moveNoticia('${n.id}', 1)" ${idx === items.length - 1 ? 'disabled' : ''}
-            class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
-            <span class="material-symbols-outlined text-base">arrow_drop_down</span>
-          </button>
+        <div class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-base text-[#c4c6ce] cursor-grab active:cursor-grabbing" title="Arrastra para reordenar">drag_indicator</span>
+          <div class="flex flex-col gap-0.5">
+            <button onclick="moveNoticia('${n.id}', -1)" ${idx === 0 ? 'disabled' : ''}
+              class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+              <span class="material-symbols-outlined text-base">arrow_drop_up</span>
+            </button>
+            <button onclick="moveNoticia('${n.id}', 1)" ${idx === items.length - 1 ? 'disabled' : ''}
+              class="text-[#7587a7] hover:text-[#0b1f3a] disabled:opacity-20 disabled:cursor-default transition-colors leading-none">
+              <span class="material-symbols-outlined text-base">arrow_drop_down</span>
+            </button>
+          </div>
         </div>
       </td>
       <td class="px-5 py-4">
@@ -681,6 +687,59 @@ function esc(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+// ─── Drag & drop reorder ─────────────────────────
+
+function setupDragReorder(tbodyId, getList, saveList, render) {
+  const tbody = document.getElementById(tbodyId);
+  let draggedId = null;
+
+  tbody.addEventListener('dragstart', e => {
+    const tr = e.target.closest('tr[data-id]');
+    if (!tr) return;
+    draggedId = tr.dataset.id;
+    e.dataTransfer.effectAllowed = 'move';
+    tr.classList.add('opacity-40');
+  });
+
+  tbody.addEventListener('dragend', e => {
+    const tr = e.target.closest('tr[data-id]');
+    tr?.classList.remove('opacity-40');
+    draggedId = null;
+  });
+
+  tbody.addEventListener('dragover', e => {
+    if (!draggedId) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  });
+
+  tbody.addEventListener('drop', e => {
+    e.preventDefault();
+    const targetTr = e.target.closest('tr[data-id]');
+    if (!targetTr || !draggedId || targetTr.dataset.id === draggedId) return;
+
+    const list = getList();
+    const fromIdx = list.findIndex(x => String(x.id) === String(draggedId));
+    const toIdx = list.findIndex(x => String(x.id) === String(targetTr.dataset.id));
+    if (fromIdx === -1 || toIdx === -1) return;
+
+    const [moved] = list.splice(fromIdx, 1);
+    list.splice(toIdx, 0, moved);
+    saveList(list);
+    render();
+  });
+}
+
+setupDragReorder('proyectos-tbody',
+  () => AlventorData.getProjects(),
+  list => AlventorData.saveProjects(list),
+  renderProyectosTable);
+
+setupDragReorder('noticias-tbody',
+  () => AlventorData.getNews(),
+  list => AlventorData.saveNews(list),
+  renderNoticiasTable);
 
 // ─── Init ────────────────────────────────────────
 
