@@ -132,9 +132,9 @@ function renderFooter() {
         <div class="flex flex-col gap-3">
           <span class="font-bold text-[11px] uppercase tracking-widest mb-1 text-[#C49A3C]">CONTACTO</span>
           <p class="text-[11px] text-slate-400 leading-relaxed">
-            Avda. Teniente Montesinos 8<br>
-            Edificio A – Planta 7<br>
-            30.100 Espinardo – Murcia
+            C/ Rio Guadalete 5<br>
+            Pol. El Saladar<br>
+            30564 – Murcia
           </p>
           <p class="text-[11px] text-slate-400">+34 621 121 462</p>
           <p class="text-[11px] text-slate-400">info@alventor.es</p>
