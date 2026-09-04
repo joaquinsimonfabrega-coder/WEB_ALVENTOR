@@ -10,8 +10,12 @@ castellano.
 
 - Sitio HTML estático (sin build tool), hosteado en GitHub Pages (`CNAME` → `alventor.es`).
 - 9 páginas HTML actuales: `index`, `servicios`, `proyectos`, `quienes-somos`, `contacto`,
-  `carrera`, `actualidad`, `reconstruccion`, `manual` (esta última es documentación interna
-  del panel admin, no cara al público).
+  `carrera`, `actualidad`, `reconstruccion`, `manual`. `manual.html` es documentación interna
+  del panel admin, no cara al público. `reconstruccion.html` es una página huérfana: no está
+  enlazada desde `NAV_LINKS` (nadie llega a ella navegando el sitio), no usa el sistema
+  compartido de nav/footer (`nav-root`/`footer-root`/`components.js` — tiene su propio
+  header/footer estáticos con enlaces `href="#"` que no llevan a ningún sitio) y ya mezcla
+  español e inglés de forma inconsistente. Ninguna de las dos entra en este trabajo.
 - `js/components.js` genera de forma centralizada el nav y el footer compartidos por todas
   las páginas públicas (funciones `renderNav()` / `renderFooter()`), con lógica de ruta base
   ya existente para el caso `/admin`.
@@ -27,7 +31,9 @@ castellano.
 
 ### Incluido
 
-- Carpeta `/en/` con las **8 páginas públicas** traducidas (todas excepto `manual.html`).
+- Carpeta `/en/` con las **7 páginas públicas** que usan el sistema compartido de nav/footer
+  traducidas: `index`, `servicios`, `proyectos`, `quienes-somos`, `contacto`, `carrera`,
+  `actualidad`.
 - Selector de idioma **ES / EN** (texto, sin banderas) en el nav de escritorio y en el menú
   móvil.
 - `js/components.js` adaptado para ser bilingüe sin duplicarse.
@@ -42,6 +48,8 @@ castellano.
 
 - `manual.html` — sigue existiendo solo en castellano y no se enlaza desde el selector de
   idioma.
+- `reconstruccion.html` — página huérfana, sin enlace desde el nav ni el sistema compartido;
+  queda fuera igual que `manual.html`, sin traducir ni corregir en este trabajo.
 - El panel `admin/` — sigue gestionando contenido únicamente en castellano; no se añaden
   campos bilingües a sus formularios en este trabajo.
 - Detección automática del idioma del navegador, o redirección automática — el idioma que ve
