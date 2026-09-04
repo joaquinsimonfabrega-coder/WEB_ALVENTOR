@@ -172,7 +172,6 @@ const AlventorData = {
 /* ---- Render helpers (used by public pages) ---- */
 const SECTOR_LABELS = {
   infraestructuras: 'Infraestructuras',
-  industrial: 'Industrial & Energía',
   edificacion: 'Edificación',
   instalaciones: 'Instalaciones Técnicas',
 };
