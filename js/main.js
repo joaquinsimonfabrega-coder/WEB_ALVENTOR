@@ -195,18 +195,21 @@ function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
+  const sendingText = (typeof isEnglish === 'function' && isEnglish()) ? 'Sending...' : 'Enviando...';
+
   form.addEventListener('submit', e => {
     e.preventDefault();
     const btn = form.querySelector('[type=submit]');
+    const originalText = btn ? btn.textContent : '';
     if (btn) {
-      btn.textContent = 'Enviando...';
+      btn.textContent = sendingText;
       btn.disabled = true;
     }
     setTimeout(() => {
       const msg = document.getElementById('form-success');
       if (msg) { msg.classList.remove('hidden'); }
       form.reset();
-      if (btn) { btn.textContent = 'Iniciar Protocolo'; btn.disabled = false; }
+      if (btn) { btn.textContent = originalText; btn.disabled = false; }
     }, 1200);
   });
 }
