@@ -39,10 +39,14 @@ const FOOTER_TEXT = {
   },
 };
 
+// Prefix for links that must stay within the current language (nav, logo, footer nav links).
+// From /en/ pages this is '' on purpose — it keeps those links inside /en/.
 function getBase() {
   return window.location.pathname.includes('/admin') ? '../' : '';
 }
 
+// Prefix for links to resources that are NOT duplicated per language (currently only admin/).
+// Unlike getBase(), this returns '../' from /en/ pages so the link reaches the single shared admin panel.
 function getRootBase() {
   if (window.location.pathname.includes('/admin')) return '../';
   if (window.location.pathname.includes('/en/')) return '../';
