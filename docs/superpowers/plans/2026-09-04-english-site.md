@@ -14,7 +14,7 @@
 
 ## Precondición (ya completada antes de este plan)
 
-El usuario exportó desde el admin el catálogo real: 40 proyectos, 5 noticias (archivo `alventor-data-2026-09-04.json`). Sin imágenes rotas. Este plan usa ese catálogo real (no los 3 proyectos de ejemplo que hoy están en `js/data.js`).
+El usuario exportó desde el admin el catálogo real: 41 proyectos, 5 noticias (archivo `alventor-data-2026-09-04.json`). Sin imágenes rotas. Este plan usa ese catálogo real (no los 3 proyectos de ejemplo que hoy están en `js/data.js`).
 
 ## Estructura de archivos afectados
 
@@ -1097,10 +1097,10 @@ vm.runInContext(code, sandbox);
 const { AlventorData, projectCardHTML, newsCardHTML, fmtDate } = sandbox;
 
 const projects = AlventorData.getProjects();
-if (projects.length !== 40) throw new Error(`expected 40 projects, got ${projects.length}`);
+if (projects.length !== 41) throw new Error(`expected 41 projects, got ${projects.length}`);
 
 const projectsWithEn = projects.filter(p => p.title_en && p.description_en);
-if (projectsWithEn.length !== 40) throw new Error(`expected all 40 projects to have title_en/description_en, got ${projectsWithEn.length}`);
+if (projectsWithEn.length !== 41) throw new Error(`expected all 41 projects to have title_en/description_en, got ${projectsWithEn.length}`);
 
 const news = AlventorData.getNews();
 if (news.length !== 5) throw new Error(`expected 5 news items, got ${news.length}`);
